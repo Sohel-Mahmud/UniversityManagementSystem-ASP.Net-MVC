@@ -6,6 +6,7 @@ For accessing all the features below, you should make a home page and keep menus
 
 During department saving, you must ensure that, code and name must be unique. Noted that, code must be two (2) to seven (7) characters long. 
 
+![alt text](https://github.com/Sohel-Mahmud/UniversityManagementSystem-ASP.Net-MVC/blob/master/sss.PNG)
 # 2. View All Departments 
 
 In this page, all the existing department information will be displayed. 
