@@ -1,0 +1,70 @@
+﻿
+@{
+//    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SaveDepartments</title>
+</head>
+<body>
+<h2>Create New Department</h2>
+    <hr />
+    
+
+    <div class="form-horizontal">
+
+        <form id="saveDepartmentForm" method="POST">
+            <div class="form-group ">
+                <div class="col-md-2 control-label">
+                    <label for="Code">Code</label>
+
+                </div>
+                <div class="col-md-10">
+                    <input id="Code" name="Code" type="text" />
+
+                </div>
+            </div>
+            <div class="form-group ">
+                <div class="col-md-2 control-label">
+                    <label for="Name">Name</label>
+
+                </div>
+                <div class="col-md-10">
+                    <input id="Name" name="Name" type="text" />
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-default" value="Save"/>
+                </div>
+                <br/>
+                @if (ViewBag.Message != null)
+{
+    <label class="col-md-10">@ViewBag.Message</label>
+}
+            </div>
+
+        </form>
+        <script src="~/Scripts/jquery-1.10.2.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script>
+            $("#saveDepartmentForm").validate({
+                rules: {
+                    Code: "required",
+                    Name: "required"
+
+                },
+                messages: {
+                    Code: "Please enter Code",
+                    Name: "Please enter the name of the department"
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>
