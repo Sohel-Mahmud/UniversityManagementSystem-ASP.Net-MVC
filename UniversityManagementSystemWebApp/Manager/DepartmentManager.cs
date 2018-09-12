@@ -47,5 +47,10 @@ namespace UniversityManagementSystemWebApp.Manager
         {
             return departmentGateway.GetAllDepartments();
         }
+
+        public Department GetDepartmentbyId(int id)
+        {
+            return departmentGateway.GetDepartmentbyId(id);
+        }
     }
 }
