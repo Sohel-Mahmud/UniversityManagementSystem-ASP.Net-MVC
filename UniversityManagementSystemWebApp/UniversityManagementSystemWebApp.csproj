@@ -169,6 +169,7 @@
     </Compile>
     <Compile Include="Manager\DepartmentManager.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AllocateClassRoomModel.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
