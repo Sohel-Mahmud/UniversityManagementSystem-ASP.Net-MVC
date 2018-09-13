@@ -47,6 +47,18 @@ namespace UniversityManagementSystemWebApp.Gateway
             return false;
         }
 
+        public int GetRowCount()
+        {
+            int rowCount = 0;
+            string query = "SELECT COUNT(*) FROM Studen";
+            Command = new SqlCommand(query, Connection);
+            Connection.Open();
+
+            rowCount = (int)Command.ExecuteScalar();
+
+            return rowCount;
+
+        }
 
         public Student GetStudentbyId(int id)
         {
