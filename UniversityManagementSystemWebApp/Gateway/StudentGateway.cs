@@ -47,11 +47,12 @@ namespace UniversityManagementSystemWebApp.Gateway
             return false;
         }
 
-        public int GetRowCount()
+        public int GetRowCount(int id)
         {
             int rowCount = 0;
-            string query = "SELECT COUNT(*) FROM Studen";
+            string query = "SELECT COUNT(*) FROM Studen WHERE DepartmentId = @id";
             Command = new SqlCommand(query, Connection);
+            Command.Parameters.AddWithValue("@id", id);
             Connection.Open();
 
             rowCount = (int)Command.ExecuteScalar();

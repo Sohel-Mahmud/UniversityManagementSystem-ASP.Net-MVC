@@ -36,9 +36,9 @@ namespace UniversityManagementSystemWebApp.Manager
             }
         }
 
-        public int GetRowCount()
+        public int GetRowCount(int id)
         {
-           return studentGateway.GetRowCount();
+           return studentGateway.GetRowCount(id);
         }
 
         public Student GetStudentbyId(int id)
