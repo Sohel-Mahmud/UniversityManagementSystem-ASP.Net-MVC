@@ -27,9 +27,19 @@ namespace UniversityManagementSystemWebApp.Controllers
         [HttpPost]
         public ActionResult SaveDepartments(Department department)
         {
-            string message = departmentManager.Save(department);
-            ViewBag.Message = message;
-            return View();
+            if (ModelState.IsValid)
+            {
+                string message = departmentManager.Save(department);
+                ViewBag.Message = message;
+                return View();
+            }
+            else
+            {
+                string message = "Validation Error";
+                ViewBag.Message = message;
+                return View();
+            }
+            
         }
 
         public ActionResult DepartmentDetails()
