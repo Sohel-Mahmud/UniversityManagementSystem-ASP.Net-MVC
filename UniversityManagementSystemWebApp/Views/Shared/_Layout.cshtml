@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
 
 </head>
 <body>
@@ -21,9 +22,24 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-@*                    <li>@Html.ActionLink("Home", "Index", "Home")</li>*@
-@*                    <li>@Html.ActionLink("About", "About", "Home")</li>*@
-@*                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+@**@
+@*                    Html.ActionLink(*@
+@*                    article.Title,*@
+@*                    "Item",   $1$actionmethod#1#*@
+@*                    "Login" ,$1$controller name.#1#*@
+@*                    new { article.articleid },$1$route arguments.#1#*@
+@*                    null $1$htmlarguments .. which are none. you need this value otherwise you call the WRONG method ...#1#*@
+@*                 *@
+@*                    )*@
+
+
+
+
+
+                    <li>@Html.ActionLink("Register", "Register","Student")</li>
+                    <li>@Html.ActionLink("Save Department", "SaveDepartments", "Department")</li>
+                    @*                    <li>@Html.ActionLink("About", "About", "Home")</li>*@
+                    @*                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>
 @*                @Html.Partial("_LoginPartial")*@
             </div>
@@ -37,7 +53,6 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

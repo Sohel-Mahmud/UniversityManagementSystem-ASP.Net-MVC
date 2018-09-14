@@ -11,17 +11,24 @@ namespace UniversityManagementSystemWebApp.Controllers
 
     public class StudentController : Controller
     {
-        DepartmentManager aDepartmentManager = new DepartmentManager();
-        StudentManager aStudentManager = new StudentManager();
+        private DepartmentManager aDepartmentManager;
+        private StudentManager aStudentManager;
         //
         // GET: /Student/
-        [HttpGet]
-        public ActionResult RegisterStudent()
+
+        public StudentController()
         {
+            aDepartmentManager = new DepartmentManager();
+            aStudentManager = new StudentManager();
+        }
+        [HttpGet]
+        public ActionResult Register()
+        {
+            ViewBag.Departments = aDepartmentManager.GetAllDepartments();
             return View();
         }
         [HttpPost]
-        public ActionResult RegisterStudent(Student student)
+        public ActionResult Register(Student student)
         {
             student.RegistrationNo = GenerateRegNo(student);
             string massage = aStudentManager.Save(student);
@@ -32,7 +39,7 @@ namespace UniversityManagementSystemWebApp.Controllers
         private string GenerateRegNo(Student student)
         {
             string Year = GetYearFromDate(student.Date);
-            string Department = aDepartmentManager.GetDepartmentbyId(student.DepartmentId).Name;
+            string Department = aDepartmentManager.GetDepartmentbyId(student.DepartmentId).Code;
             string Serial = GetSerialFromRowCount(aStudentManager.GetRowCount());
 
             return Department + "-" + Year + "-" + Serial;
