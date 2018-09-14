@@ -28,11 +28,11 @@
             <div class="form-group">
 
                 <div class="col-md-2 control-label">
-                    @Html.Label("Name")
+                    @Html.Label("StudentName")
                 </div>
 
                 <div class="col-md-10">
-                    @Html.TextBox("Name")
+                    @Html.TextBox("StudentName")
                 </div>
             </div>
 
@@ -83,7 +83,7 @@
                     <script type="text/javascript">
                         $(function () {
                             $('#Date').datetimepicker({
-                                format:'DD/MM/YYYY'
+                                format: 'DD/MM/YYYY'
                             });
                         });
                     </script>
@@ -93,28 +93,26 @@
 
             <div class="form-group">
                 <div class="col-md-2 control-label">
-                    @Html.Label("Department")
+                    @Html.Label("DepartmentId")
                 </div>
 
 
                 <div class="col-md-10">
-                    @Html.DropDownList("Department", new SelectList(Departments, "DeptId", "Code"), "--Select--")
+
+                    @Html.DropDownList("DepartmentId", new SelectList(Departments, "DeptId", "Code"), "--SELECT--")
                 </div>
             </div>
 
-    <div class="col-md-3 control-label">
-        <button class="btn btn-success">Register</button>
-    </div>
-
-        }
-        </div>
-        @{
-            if (ViewBag.Massage == null)
+            <div class="col-md-3 control-label">
+                <button class="btn btn-success" type="submit">Register</button>
+            </div>
+            if (ViewBag.Message != null)
             {
-                <label>@ViewBag.Massage</label>
-            }
+                <label class="col-md-10">@ViewBag.Message</label>
 
+            }
         }
+    </div>
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -18,7 +19,8 @@ namespace UniversityManagementSystemWebApp.Gateway
             Command.Parameters.AddWithValue("@name", student.StudentName);
             Command.Parameters.AddWithValue("@contact", student.ContactNo);
             Command.Parameters.AddWithValue("@email", student.Email);
-            Command.Parameters.AddWithValue("@date", student.Date);
+            Command.Parameters.AddWithValue("@date", DateTime.ParseExact(student.Date, "dd/MM/yyyy", null));
+            Command.Parameters.AddWithValue("@address", student.Address);
             Command.Parameters.AddWithValue("@deptid", student.DepartmentId);
             Command.Parameters.AddWithValue("@regno", student.RegistrationNo);
 
@@ -33,8 +35,8 @@ namespace UniversityManagementSystemWebApp.Gateway
             string query = "SELECT * FROM Student WHERE Email = @email";
             Command = new SqlCommand(query, Connection);
             Command.Parameters.AddWithValue("@email", student.Email);
-
-            Connection.Open();
+            if (Connection.State != ConnectionState.Open)
+                Connection.Open();
             Reader = Command.ExecuteReader();
             if (Reader.HasRows)
             {
@@ -50,13 +52,13 @@ namespace UniversityManagementSystemWebApp.Gateway
         public int GetRowCount(int id)
         {
             int rowCount = 0;
-            string query = "SELECT COUNT(*) FROM Studen WHERE DepartmentId = @id";
+            string query = "SELECT COUNT(*) FROM Student WHERE DepartmentId = @id";
             Command = new SqlCommand(query, Connection);
             Command.Parameters.AddWithValue("@id", id);
             Connection.Open();
 
             rowCount = (int)Command.ExecuteScalar();
-
+            Connection.Close();
             return rowCount;
 
         }

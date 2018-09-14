@@ -53,7 +53,7 @@ namespace UniversityManagementSystemWebApp.Gateway
             Connection.Open();
             Reader = Command.ExecuteReader();
             Department aDepartment = new Department();
-            if (Reader.HasRows)
+            if (Reader.Read())
             {
 
                 aDepartment.Code = Reader["Code"].ToString();
@@ -76,6 +76,7 @@ namespace UniversityManagementSystemWebApp.Gateway
             while (Reader.Read())
             {
                 Department aDepartment = new Department();
+                aDepartment.DeptId = Convert.ToInt32(Reader["DeptId"]);
                 aDepartment.Code = Reader["Code"].ToString();
                 aDepartment.Name = Reader["Name"].ToString();
                 departmentList.Add(aDepartment);

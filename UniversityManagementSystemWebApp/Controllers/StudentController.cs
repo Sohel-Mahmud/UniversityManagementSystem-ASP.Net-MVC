@@ -31,8 +31,8 @@ namespace UniversityManagementSystemWebApp.Controllers
         public ActionResult Register(Student student)
         {
             student.RegistrationNo = GenerateRegNo(student);
-            string massage = aStudentManager.Save(student);
-            ViewBag.Massage = massage;
+            ViewBag.Message  = aStudentManager.Save(student);
+            ViewBag.Departments = aDepartmentManager.GetAllDepartments();
             return View();
         }
 
@@ -54,8 +54,7 @@ namespace UniversityManagementSystemWebApp.Controllers
 
         private string GetYearFromDate(string datefromdatepicker)
         {
-            string givenDate = datefromdatepicker;
-            DateTime date = Convert.ToDateTime(givenDate);
+            DateTime date = DateTime.ParseExact(datefromdatepicker, "dd/MM/yyyy", null);
             string year = date.Year.ToString();
             return year;
         }
