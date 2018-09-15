@@ -18,7 +18,8 @@ namespace UniversityManagementSystemWebApp.Gateway
 
         public string SaveCourse(Course course)
         {
-            if (course.Credit > 0.4 && course.Credit < 5.0)
+            string message = courseGateway.isExisted(course);
+            if (message.Equals("success"))
             {
                 int rowAffect = courseGateway.SaveCourse(course);
                 if (rowAffect > 0)
@@ -33,7 +34,7 @@ namespace UniversityManagementSystemWebApp.Gateway
             }
             else
             {
-                return "Credit must be within 0.5 to 5.0";
+                return message;
             }
         }
 
