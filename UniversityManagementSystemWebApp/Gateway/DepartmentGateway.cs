@@ -9,8 +9,7 @@ namespace UniversityManagementSystemWebApp.Gateway
 {
     public class DepartmentGateway: BaseGateway
     {
-        public string Code { get; set; }
-        public string Name { get; set; }
+        
 
         public int Save(Department department)
         {
