@@ -9,8 +9,6 @@ namespace UniversityManagementSystemWebApp.Gateway
 {
     public class DepartmentGateway: BaseGateway
     {
-        public string Code { get; set; }
-        public string Name { get; set; }
 
         public int Save(Department department)
         {
@@ -54,6 +52,7 @@ namespace UniversityManagementSystemWebApp.Gateway
             while (Reader.Read())
             {
                 Department aDepartment = new Department();
+                aDepartment.DeptId = Convert.ToInt32(Reader["DeptId"]);
                 aDepartment.Code = Reader["Code"].ToString();
                 aDepartment.Name = Reader["Name"].ToString();
                 departmentList.Add(aDepartment);
