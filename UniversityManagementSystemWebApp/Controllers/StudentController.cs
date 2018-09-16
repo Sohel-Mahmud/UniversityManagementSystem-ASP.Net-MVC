@@ -40,7 +40,7 @@ namespace UniversityManagementSystemWebApp.Controllers
         {
             string Year = GetYearFromDate(student.Date);
             string Department = aDepartmentManager.GetDepartmentbyId(student.DepartmentId).Code;
-            string Serial = GetSerialFromRowCount(aStudentManager.GetRowCount(student.DepartmentId));
+            string Serial = GetSerialFromRowCount(aStudentManager.GetRowCount(student.DepartmentId,Convert.ToInt32(GetYearFromDate(student.Date))));
 
             return Department + "-" + Year + "-" + Serial;
         }
