@@ -33,12 +33,14 @@ namespace UniversityManagementSystemWebApp.Controllers
             return View();
         }
 
-//        [HttpPost]
-//        public ActionResult Enroll(Enroll enroll)
-//        {
-//            ViewBag.RegNoList = aEnrollCourseManager.GetAllStudentRegNo();
-//            return View();
-//        }
+        [HttpPost]
+        public ActionResult Enroll(Enroll enroll)
+        {
+            ViewBag.RegNoList = aEnrollCourseManager.GetAllStudentRegNo();
+            enroll.Action = "insert";
+            ViewBag.Massege = aEnrollCourseManager.EnrollCourse(enroll);
+            return View();
+        }
 
 
         public JsonResult GetCourseByStudentId(int studentId)

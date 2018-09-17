@@ -14,7 +14,7 @@ namespace UniversityManagementSystemWebApp.Gateway
 
         public int EnrollCourse(Enroll enroll)
         {
-            string query = "INSERT INTO Enroll VALUES(@StudentId @CourseId, @Date,@GradeId, @Action)";
+            string query = "INSERT INTO Enroll VALUES(@StudentId , @CourseId, @Date, @GradeId , @Action)";
             Command = new SqlCommand(query, Connection);
             Command.Parameters.AddWithValue("@StudentId", enroll.StudentId);
             Command.Parameters.AddWithValue("@CourseId", enroll.CourseId);
