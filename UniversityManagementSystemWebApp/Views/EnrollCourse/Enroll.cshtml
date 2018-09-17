@@ -1,0 +1,199 @@
+﻿@using UniversityManagementSystemWebApp.Models
+@model UniversityManagementSystemWebApp.Models.Enroll
+
+@{
+
+    ViewBag.Title = "Enroll";
+    Layout = Layout;
+    List<Student> RegNoList = ViewBag.RegNoList;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+
+    <style>
+        input[readonly].readonly {
+            background-color: transparent;
+            -webkit-box-shadow: none;
+            -ms-box-shadow: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="form-group">
+            <h2>Enroll New Student</h2>
+        </div>
+        <hr />
+
+        @using (Html.BeginForm("Enroll", "EnrollCourse", FormMethod.Post, new { id = "studentenrollform", @class = "form-horizontal" }))
+        {
+
+
+            <div class="form-group">
+                <div class="col-md-2 control-label">
+                    @Html.LabelFor(x => x.StudentId)
+                </div>
+
+
+                <div class="col-md-10">
+
+                    @Html.DropDownListFor(x => x.StudentId, new SelectList(RegNoList, "StudentId", "RegistrationNo"), "--SELECT--")
+                    @Html.ValidationMessageFor(x => x.StudentId)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-2 control-label">
+                    <label>Name</label>
+                </div>
+
+
+                <div class="col-md-10">
+
+                    <input class="readonly" type='text' name="Name" id="Name" readonly="readonly"   />
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-2 control-label">
+                    <label>Email</label>
+                </div>
+
+
+                <div class="col-md-10">
+
+                    <input class="readonly" type='text' name="Email" id="Email" readonly="readonly"  />
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-2 control-label">
+                    <label>Department</label>
+
+                </div>
+                <div class="col-md-10">
+
+                    <input class="readonly" type='text' name="Department" id="Department" readonly="readonly"/>
+                </div>
+
+            </div>
+            
+            
+            <div class="form-group">
+                <div class="col-md-2 control-label">
+                    @Html.LabelFor(x => x.CourseId)
+                </div>
+
+
+                <div class="col-md-10">
+
+                    @Html.DropDownListFor(x => x.CourseId, new SelectList(string.Empty, "Value", "Text"), "--SELECT--")
+                    @Html.ValidationMessageFor(x => x.CourseId)
+                </div>
+            </div>
+            
+            
+             <div class="form-group">
+                <div class="col-md-2 control-label">
+                    @Html.LabelFor(x => x.Date)
+                </div>
+                @*  <input type='text' class="col-md-10" id='Date' name="Date"/>*@
+                <div class="col-md-10">
+                    @Html.TextBoxFor(x => x.Date)
+                    @Html.ValidationMessageFor(x => x.Date)
+                </div>
+
+                <script type="text/javascript">
+                    $(function () {
+                        $('#Date').datetimepicker({
+                            format: 'DD/MM/YYYY'
+                        });
+                    });
+                </script>
+
+
+            </div>
+
+
+
+         <div class="col-md-3 control-label">
+                <button class="btn btn-success" type="submit">Enroll</button>
+            </div>
+            if (ViewBag.Message != null)
+            {
+                <label class="col-md-10">@ViewBag.Message</label>
+
+            }
+
+
+            <script type="text/javascript">
+                
+
+                $(document).ready(function () {
+
+
+
+                    //cascading dropdownlist
+                    $("#StudentId").change(function () {
+                        var studentId = $("#StudentId").val();
+                        alert("show dept id " + studentId);
+                        var json = { studentId: studentId };
+
+                        //call for course dropdown
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("GetCourseByStudentId", "EnrollCourse")',
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify(json),
+                            success: function (data) {
+                                $("#CourseId").empty();
+                                $.each(data, function (key, value) {
+
+                                    $("#CourseId").append('<option value=' + value.Value + '>' + value.Text + '</option>');
+                                });
+                            }
+
+                        });
+
+
+                        //for all Student info name,email,dept
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("GetAllInfoByStudentId", "EnrollCourse")',
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify(json),
+                            success: function (data) {
+                                if (data != null) {
+                                    $('#Name').val(data.StudentName);
+                                    $('#Email').val(data.Email);
+                                    $('#Department').val(data.DeptCode);
+                                } else {
+                                    alert("Something went wrong");
+                                }
+                            }
+
+                        });
+
+
+
+                    });
+                });
+
+
+
+            </script>
+
+
+        }
+
+    </div>
+</body>
+</html>

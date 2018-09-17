@@ -38,6 +38,7 @@
 
                     <li>@Html.ActionLink("Register", "Register","Student")</li>
                     <li>@Html.ActionLink("Save Department", "SaveDepartments", "Department")</li>
+                    <li>@Html.ActionLink("Enroll Course", "Enroll", "EnrollCourse")</li>
                     @*                    <li>@Html.ActionLink("About", "About", "Home")</li>*@
                     @*                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>
@@ -54,8 +55,9 @@
     </div>
 
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
     @RenderSection("scripts", required: false)
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+   
 </body>
 </html>
