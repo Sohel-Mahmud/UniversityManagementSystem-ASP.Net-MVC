@@ -44,6 +44,24 @@ namespace UniversityManagementSystemWebApp.Manager
             return courseGateway.GetAllCourseByStudentId(StudentId);
         }
 
+        public List<SelectListItem> GetAllCourseByStudentIdForDropDownList(int studentId)
+        {
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            selectListItems.Add(new SelectListItem() { Text = "--Select--", Value = "" });
+
+            List<Course> getAllCourseList = courseGateway.GetAllCourseByStudentId(studentId);
+
+
+            foreach (Course aCourse in getAllCourseList)
+            {
+                SelectListItem selectList = new SelectListItem();
+                selectList.Text = aCourse.CourseCode;
+                selectList.Value = aCourse.CourseId.ToString();
+                selectListItems.Add(selectList);
+            }
+            return selectListItems;
+        }
+
         public List<SelectListItem> GetAllSemesterForDropdown()
         {
             List<SelectListItem> selectListItems = new List<SelectListItem>();

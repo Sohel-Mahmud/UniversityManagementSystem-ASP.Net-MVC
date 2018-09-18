@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.WebPages.Html;
 using UniversityManagementSystemWebApp.Gateway;
 using UniversityManagementSystemWebApp.Models;
 using UniversityManagementSystemWebApp.ViewModel;
@@ -11,6 +12,7 @@ namespace UniversityManagementSystemWebApp.Controllers
     public class EnrollCourseManager
     {
         EnrollCourseGateway aEnrollCourseGateway = new EnrollCourseGateway();
+        CourseGateway aCourseGateway = new CourseGateway();
         public string EnrollCourse(Enroll enroll)
         {
             if (!aEnrollCourseGateway.IsEnrollExixts(enroll))
@@ -40,5 +42,7 @@ namespace UniversityManagementSystemWebApp.Controllers
         {
             return aEnrollCourseGateway.GetAllStudentInfoByStudentId(studentId);
         }
+
+        
     }
 }

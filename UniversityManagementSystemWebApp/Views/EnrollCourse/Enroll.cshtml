@@ -95,7 +95,7 @@
 
                 <div class="col-md-10">
 
-                    @Html.DropDownListFor(x => x.CourseId, new SelectList(string.Empty, "Value", "Text"), "--SELECT--")
+                    @Html.DropDownListFor(x => x.CourseId, new SelectList(string.Empty, "Value", "Text"))
                     @Html.ValidationMessageFor(x => x.CourseId)
                 </div>
             </div>
@@ -157,7 +157,7 @@
                                 $("#CourseId").empty();
                                 $.each(data, function (key, value) {
 
-                                    $("#CourseId").append('<option value=' + value.CourseId + '>' + value.CourseCode + '</option>');
+                                    $("#CourseId").append('<option value=' + value.Value + '>' + value.Text + '</option>');
                                 });
                             }
 

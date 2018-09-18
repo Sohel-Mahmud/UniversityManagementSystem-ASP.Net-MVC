@@ -18,7 +18,7 @@ namespace UniversityManagementSystemWebApp.Models
         [DisplayFormat(DataFormatString = "{0:/dd/MM/yyyy}")]
         public string Date { get; set; }
 
-        public int GradeId { get; set; }
+        public int? GradeId { get; set; }
 
         public string Action { get; set; }
     }

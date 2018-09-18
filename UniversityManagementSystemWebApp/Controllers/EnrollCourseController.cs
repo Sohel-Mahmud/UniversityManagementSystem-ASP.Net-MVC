@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using UniversityManagementSystemWebApp.Manager;
 using UniversityManagementSystemWebApp.Models;
 using UniversityManagementSystemWebApp.ViewModel;
+using SelectListItem = System.Web.WebPages.Html.SelectListItem;
 
 namespace UniversityManagementSystemWebApp.Controllers
 {
@@ -38,14 +39,14 @@ namespace UniversityManagementSystemWebApp.Controllers
         {
             ViewBag.RegNoList = aEnrollCourseManager.GetAllStudentRegNo();
             enroll.Action = "insert";
-            ViewBag.Massege = aEnrollCourseManager.EnrollCourse(enroll);
+            ViewBag.Message = aEnrollCourseManager.EnrollCourse(enroll);
             return View();
         }
 
 
         public JsonResult GetCourseByStudentId(int studentId)
         {
-            List<Course> courseList = aCourseManager.GetAllCoursebyStudentId(studentId);
+            List<SelectListItem> courseList = aCourseManager.GetAllCourseByStudentIdForDropDownList(studentId);
             return Json(courseList, JsonRequestBehavior.AllowGet);
         }
 

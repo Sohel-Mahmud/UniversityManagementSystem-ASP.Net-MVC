@@ -12,7 +12,7 @@ namespace UniversityManagementSystemWebApp.Models
         [Required(ErrorMessage = "Please Provide Student Name!")]
         public string StudentName { get; set; }
         [Required(ErrorMessage = "Please Provide Contact Number!")]
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Contact Number must be a natural number")]
+        [RegularExpression("([0-9]*)", ErrorMessage = "Contact Number must be a natural number")]
         [StringLength(11,MinimumLength = 11,ErrorMessage = "Contact Number Must Be 11 Digit Long!")]
         public string ContactNo { get; set; }
         [Required(ErrorMessage = "Please Provide Email Address!")]

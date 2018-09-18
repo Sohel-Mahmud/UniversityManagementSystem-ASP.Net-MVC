@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.DynamicData;
 using UniversityManagementSystemWebApp.Models;
+using UniversityManagementSystemWebApp.Models.ViewModel;
 
 namespace UniversityManagementSystemWebApp.Gateway
 {
@@ -64,23 +65,25 @@ namespace UniversityManagementSystemWebApp.Gateway
 
         }
 
-        public Student GetStudentbyId(int id)
+        public StudentDetailsViewModel GetStudentbyDetailsById(int Deptid,int StudentId)
         {
-            string query = "SELECT * FROM Student WHERE StudentId = @id";
+            string query = "SELECT StudentName,RegistrationNo,ContactNo,Email,Date,Address,Code,Name FROM Student INNER JOIN Departments ON Student.DepartmentId = @deptId WHERE StudentId = @studentId";
+            //"SELECT StudentName,Email,Code FROM Student INNER JOIN Departments ON Student.DepartmentId=Departments.DeptId AND StudentId=@StudentId"
             Command = new SqlCommand(query, Connection);
-            Command.Parameters.AddWithValue("@id", id);
+            Command.Parameters.AddWithValue("@deptid",Deptid);
+            Command.Parameters.AddWithValue("@studentId", StudentId);
             Connection.Open();
             Reader = Command.ExecuteReader();
-            Student aStudent = new Student();
+            StudentDetailsViewModel aStudent = new StudentDetailsViewModel();
             if (Reader.HasRows)
             {
                 aStudent.StudentName = Reader["StudentName"].ToString();
-                aStudent.ContactNo = Reader["ContactNo"].ToString();
-                aStudent.Email = Reader["Email"].ToString();
-                aStudent.Date = Reader["Date"].ToString();
-                aStudent.Address = Reader["Address"].ToString();
-                aStudent.DepartmentId = Convert.ToInt32(Reader["DepartmentId"]);
-                aStudent.RegistrationNo = Reader["RegistrationNo"].ToString();
+                aStudent.StudentRegNo = Reader["RegistrationNo"].ToString();
+                aStudent.StudentEmail = Reader["Email"].ToString();
+                aStudent.StudentDate = Reader["Date"].ToString();
+                aStudent.StudentAddress = Reader["Address"].ToString();
+                aStudent.StudentDeptCode =Reader["Code"].ToString();
+                aStudent.StudentDeptName = Reader["Name"].ToString();
 
             }
 
@@ -95,7 +98,7 @@ namespace UniversityManagementSystemWebApp.Gateway
             string query = "SELECT * FROM Student";
             Command = new SqlCommand(query, Connection);
             Connection.Open();
-            List<Student> departmentList = new List<Student>();
+            List<Student> StudentList = new List<Student>();
             Reader = Command.ExecuteReader();
             while (Reader.Read())
             {
@@ -107,10 +110,11 @@ namespace UniversityManagementSystemWebApp.Gateway
                 aStudent.Address = Reader["Address"].ToString();
                 aStudent.DepartmentId = Convert.ToInt32(Reader["DepartmentId"]);
                 aStudent.RegistrationNo = Reader["RegistrationNo"].ToString();
+                StudentList.Add(aStudent);
             }
             Reader.Close();
             Connection.Close();
-            return departmentList;
+            return StudentList;
         }
 
 

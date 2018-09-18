@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using UniversityManagementSystemWebApp.Gateway;
 using UniversityManagementSystemWebApp.Models;
+using UniversityManagementSystemWebApp.Models.ViewModel;
 
 namespace UniversityManagementSystemWebApp.Manager
 {
@@ -41,9 +42,14 @@ namespace UniversityManagementSystemWebApp.Manager
            return studentGateway.GetRowCount(id,year);
         }
 
-        public Student GetStudentbyId(int id)
+        //public Student GetStudentbyId(int id)
+        //{
+        //    return studentGateway.GetStudentbyId(id);
+        //}
+
+        public StudentDetailsViewModel GetStudentbyDetailsById(int Deptid, int StudentId)
         {
-            return studentGateway.GetStudentbyId(id);
+            return studentGateway.GetStudentbyDetailsById(Deptid,StudentId);
         }
 
         public List<Student> GetAllStudents()

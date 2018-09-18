@@ -14,12 +14,11 @@ namespace UniversityManagementSystemWebApp.Gateway
 
         public int EnrollCourse(Enroll enroll)
         {
-            string query = "INSERT INTO Enroll VALUES(@StudentId , @CourseId, @Date, @GradeId , @Action)";
+            string query = "INSERT INTO Enroll(StudentId,CourseId,Date,Action) VALUES(@StudentId , @CourseId, @Date, @Action)";
             Command = new SqlCommand(query, Connection);
             Command.Parameters.AddWithValue("@StudentId", enroll.StudentId);
             Command.Parameters.AddWithValue("@CourseId", enroll.CourseId);
             Command.Parameters.AddWithValue("@Date", DateTime.ParseExact(enroll.Date, "dd/MM/yyyy", null));
-            Command.Parameters.AddWithValue("@GradeId",enroll.GradeId );
             Command.Parameters.AddWithValue("@Action", enroll.Action);
 
             Connection.Open();
