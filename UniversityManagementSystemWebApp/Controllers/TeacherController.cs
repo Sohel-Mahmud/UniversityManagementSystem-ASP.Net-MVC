@@ -48,5 +48,50 @@ namespace UniversityManagementSystemWebApp.Controllers
             }
             
         }
+        [HttpGet]
+        public ActionResult AssignCourse()
+        {
+            ViewBag.Department = departmentManager.GetAllDepartmentForDropdown();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AssignCourse(AssignCourse assignCourse)
+        {
+
+            ViewBag.Department = departmentManager.GetAllDepartmentForDropdown();
+            ViewBag.Message = teacherManager.AssignCourseToTeacher(assignCourse);
+            return View();
+        }
+
+        public JsonResult GetTeacherByDeptId(int DepartmentId)
+        {
+            List<Teacher> teacherList = teacherManager.GetAllTeacherByDeptID(DepartmentId);
+            return Json(teacherList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetAllCourseCodeByDeptId(int DepartmentId)
+        {
+            List<Course> courseCodeList = teacherManager.GetAllCourseCodeByDeptId(DepartmentId);
+            return Json(courseCodeList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetTeacherInfoByTeacherId(int TeacherId)
+        {
+            Teacher teacherCreditViewModel = teacherManager.GetTeacherInfoByTeacherId(TeacherId);
+            return Json(teacherCreditViewModel, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCourseNameCreditByCourseId(int CourseId)
+        {
+            Course courseNameCredit = teacherManager.GetCourseNameCreditByCourseId(CourseId);
+            return Json(courseNameCredit, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCreditTakenSumOfTeacherByTeacherId(int TeacherId)
+        {
+            double sumOfCredit = teacherManager.GetCreditTakenSumOfTeacherByTeacherId(TeacherId);
+            return Json(sumOfCredit, JsonRequestBehavior.AllowGet);
+        }
 	}
 }
