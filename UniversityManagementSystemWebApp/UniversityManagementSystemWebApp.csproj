@@ -162,20 +162,34 @@
     <Compile Include="Controllers\AllocateClassRoomController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StudentResultController.cs" />
+    <Compile Include="Controllers\UnAllocateAllClassRoomController.cs" />
+    <Compile Include="Controllers\UnassignAllCoursesController.cs" />
     <Compile Include="Gateway\AllocateClassRoomGateway.cs" />
     <Compile Include="Gateway\BaseGateway.cs" />
     <Compile Include="Gateway\DepartmentGateway.cs" />
+    <Compile Include="Gateway\StudentResultGateway.cs" />
+    <Compile Include="Gateway\UnAllocateClassRoomGateWay.cs" />
+    <Compile Include="Gateway\UnAssignAllCourseGateWay.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Manager\AllocateClassRoomManager.cs" />
     <Compile Include="Manager\DepartmentManager.cs" />
+    <Compile Include="Manager\StudentResultManager.cs" />
+    <Compile Include="Manager\UnAllocateClassRoomManager.cs" />
+    <Compile Include="Manager\UnAssignAllCourseManager.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AllocateClassRoom.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Enroll.cs" />
+    <Compile Include="Models\Grade.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Room.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\ViewModel\StudenResultViewModel.cs" />
+    <Compile Include="Models\ViewModel\ViewClassSheduleViewModel.cs" />
     <Compile Include="Models\WeekDay.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -325,6 +339,10 @@
     <Content Include="Views\Department\SaveDepartments.cshtml" />
     <Content Include="Views\Department\DepartmentDetails.cshtml" />
     <Content Include="Views\AllocateClassRoom\Save.cshtml" />
+    <Content Include="Views\StudentResult\SaveResult.cshtml" />
+    <Content Include="Views\AllocateClassRoom\ViewClassShedule.cshtml" />
+    <Content Include="Views\UnassignAllCourses\UnAssignCourse.cshtml" />
+    <Content Include="Views\UnAllocateAllClassRoom\UnAllocatClass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,81 @@
+﻿@using UniversityManagementSystemWebApp.Models.ViewModel
+@model UniversityManagementSystemWebApp.Models.AllocateClassRoom
+
+@{
+    Layout = Layout;
+    List<SelectListItem> departments = ViewBag.Departments;
+    List<ViewClassSheduleViewModel> shedules = ViewBag.ShowDetails;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewClassShedule</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("ViewClassShedule", "AllocateClassRoom", FormMethod.Post, new { id = "AllocateClassRoomForm", @class = "" }))
+        {
+            <table>
+                <tr>
+                    <td>
+
+                        @Html.LabelFor(x => x.DeptId)
+                    </td>
+                    <td>
+
+                        @Html.DropDownListFor(x => x.DeptId, new SelectList(departments, "Value", "Text"))
+                        @Html.ValidationMessageFor(x => x.DeptId)
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Save" />
+                    </td>
+                </tr>
+            </table>
+            if (shedules != null)
+            {
+                <div class="container">
+                    <h2>Basic Table</h2>
+                    <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Course Code</th>
+                                <th>Course Name</th>
+                                <th>Schedule</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            @foreach (ViewClassSheduleViewModel aViewClassShedule in shedules)
+                            {
+                                <tr>
+                                    <td>@aViewClassShedule.CourseCode</td>
+                                    <td>@aViewClassShedule.CourseName</td>
+                                    <td>
+                                        @foreach (string asheduleInfo in aViewClassShedule.Scheduleinfo)
+                                        {
+                                            @asheduleInfo;
+                                            
+                                        }
+                                    </td>
+                                </tr>
+
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            }
+        }
+    </div>
+</body>
+</html>

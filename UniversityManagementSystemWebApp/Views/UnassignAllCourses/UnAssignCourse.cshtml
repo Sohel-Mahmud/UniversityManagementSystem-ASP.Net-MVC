@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UnAssignCourse</title>
+</head>
+<body>
+<div>
+                            <!--Name    ,     Action,            Controller-->
+    @Html.ActionLink("UnAssignAllCourse", "UnAssignCourse", "UnassignAllCourses", new {confirm = true},
+        new {onclick = "return confirm('Are you sure to unassign all courses?')"})
+
+
+
+</div>
+
+
+
+</body>
+</html>

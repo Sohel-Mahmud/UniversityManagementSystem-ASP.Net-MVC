@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Caching;
 using UniversityManagementSystemWebApp.Models;
+using UniversityManagementSystemWebApp.Models.ViewModel;
 
 
 namespace UniversityManagementSystemWebApp.Gateway
@@ -31,7 +33,7 @@ namespace UniversityManagementSystemWebApp.Gateway
 
         public List<Course> GetCoursByDeparmentId(int DeptId)
         {
-            string query = "SELECT CourseId,CourseName FROM Course WHERE DeptId=@DeptId";
+            string query = "SELECT CourseId,CourseCode FROM Course WHERE DeptId=@DeptId";
             Command = new SqlCommand(query, Connection);
             Command.Parameters.AddWithValue("@DeptId", DeptId);
             Connection.Open();
@@ -41,7 +43,7 @@ namespace UniversityManagementSystemWebApp.Gateway
             {
                 Course acourse = new Course();
                 acourse.CourseId = Convert.ToInt32(Reader["CourseId"]);
-                acourse.CourseName = Reader["CourseName"].ToString();
+                acourse.CourseCode = Reader["CourseCode"].ToString();
                 courseList.Add(acourse);
             }
             Reader.Close();
@@ -119,7 +121,7 @@ namespace UniversityManagementSystemWebApp.Gateway
                 }
                 else
                 {
-                    SaveRoomForShedule(aAllocateClassRoom);
+                   
                     Reader.Close();
                     Connection.Close();
                     return true;
@@ -129,9 +131,8 @@ namespace UniversityManagementSystemWebApp.Gateway
             //If any data not found in database then simply save new data
             else
             {
-                SaveRoomForShedule(aAllocateClassRoom);
-                Reader.Close();
                 Connection.Close();
+                Reader.Close();            
                 return true;       
             }
             
@@ -148,8 +149,10 @@ namespace UniversityManagementSystemWebApp.Gateway
             {
                 DateTime AstartTime = convertDatetime(atime.FromTime);
                 DateTime AendTime = convertDatetime(atime.ToTime);
+                
                 if ((BstarTime >= AstartTime && BstarTime < AendTime) || (BendTime > AstartTime && BendTime <= AendTime) ||(BstarTime<AstartTime && BendTime>AendTime))
                 {
+                    
                     flag = true;
                     break;
                 }
@@ -167,14 +170,83 @@ namespace UniversityManagementSystemWebApp.Gateway
             DateTime adateTime = Convert.ToDateTime(2018 + "/" + 11 + "/" + 13 + " " + hour + ":" + minute + ":00 " + amPm);
             return adateTime;
         }
-        public void SaveRoomForShedule(AllocateClassRoom aAllocateClassRoom)
+        public int SaveRoomForShedule(AllocateClassRoom aAllocateClassRoom)
         {
+            string query = "INSERT INTO AllocateClassroom VALUES(@DeptId, @CourseId,@RoomId, @DayId,@FromTime,@ToTime, @Action)";
+            Command = new SqlCommand(query, Connection);
+            Command.Parameters.AddWithValue("@DeptId", aAllocateClassRoom.DeptId);
+            Command.Parameters.AddWithValue("@CourseId", aAllocateClassRoom.CourseId);
+            Command.Parameters.AddWithValue("@RoomId", aAllocateClassRoom.RoomId);
+            Command.Parameters.AddWithValue("@DayId", aAllocateClassRoom.DayId);
+            Command.Parameters.AddWithValue("@FromTime", aAllocateClassRoom.FromTime);
+            Command.Parameters.AddWithValue("@ToTime", aAllocateClassRoom.ToTime);
+            Command.Parameters.AddWithValue("@Action", "insert");
 
+
+
+            Connection.Open();
+            int rowAffected = Command.ExecuteNonQuery();          
+            return rowAffected;
         }
 
-        
-        
 
+        public List<ViewClassSheduleViewModel> showClassDetails(Department aDepartment)
+        {
+            string query = "SELECT CourseId,CourseCode,CourseName FROM Course WHERE DeptId=@DeptId";
+            Command = new SqlCommand(query, Connection);
+            Command.Parameters.AddWithValue("@DeptId", aDepartment.DeptId);
+            Connection.Open();
+            List<ViewClassSheduleViewModel> viewClassShedule = new List<ViewClassSheduleViewModel>();
+            Reader = Command.ExecuteReader();
+            while (Reader.Read())
+            {
+                ViewClassSheduleViewModel aviewClassShedule = new ViewClassSheduleViewModel();
+                aviewClassShedule.CourseId = Convert.ToInt32(Reader["CourseId"]);
+                aviewClassShedule.CourseCode = Reader["CourseCode"].ToString();
+                aviewClassShedule.CourseName = Reader["CourseName"].ToString();
+                viewClassShedule.Add(aviewClassShedule);
+            }
+            Reader.Close();
+            Connection.Close();
+ 
+            return CourseGroupByClassAndRoom(viewClassShedule);
+        }
+
+        // Grouping in a model list
+        public List<ViewClassSheduleViewModel> CourseGroupByClassAndRoom(List<ViewClassSheduleViewModel> aviewClassShedulelist)
+        {
+            foreach (ViewClassSheduleViewModel aViewClassShedule in aviewClassShedulelist)
+            {
+                string query = "SELECT Rooms.RoomName AS RoomName,WeekDays.DayName AS DayName,AllocateClassroom.FromTime AS FromTime,AllocateClassroom.ToTime " +
+                               "AS ToTime FROM AllocateClassroom INNER JOIN Rooms ON  Rooms.RoomID=AllocateClassroom.RoomId " +
+                               "INNER JOIN WeekDays ON WeekDays.DayId=AllocateClassroom.DayId WHERE CourseId=@CourseId AND AllocateClassroom.Action=@Action";
+                Command = new SqlCommand(query, Connection);
+                Command.Parameters.AddWithValue("@CourseId", aViewClassShedule.CourseId);
+                Command.Parameters.AddWithValue("@Action", "insert");
+                Connection.Open();               
+                Reader = Command.ExecuteReader();
+                if (Reader.HasRows)
+                {
+                    while (Reader.Read())
+                    {
+                        string Shedule = "R.NO: " + Reader["RoomName"].ToString() + "," + Reader["DayName"].ToString() +
+                                         "," + Reader["FromTime"].ToString() + "-" + Reader["ToTime"].ToString() + ";";
+                        aViewClassShedule.Scheduleinfo.Add(Shedule);
+                    }
+                }
+                else
+                {
+                    string Shedule = "Not Assign Yet";
+                    aViewClassShedule.Scheduleinfo.Add(Shedule);
+                }
+
+                Reader.Close();
+                Connection.Close();
+                
+            }
+            return aviewClassShedulelist;
+
+        }
 
     }
 }

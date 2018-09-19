@@ -47,15 +47,11 @@ namespace UniversityManagementSystemWebApp.Controllers
             {
                 allocateClassRoom.ToTime = "0" + allocateClassRoom.ToTime;
             }
-           //Response.Write("DeptId "+allocateClassRoom.DeptId+" CourseId"+
-           //    allocateClassRoom.CourseId + " RoomId " + allocateClassRoom.RoomId +
-           //    " DayId " + allocateClassRoom.DayId + " FromTime" + allocateClassRoom.FromTime.Length +
-           //    " ToTime" + allocateClassRoom.ToTime.Length);
-
-            ViewBag.Message = allocateClassRoomManager.saveAllocateClass(allocateClassRoom);    
+                 
             ViewBag.Departments = allocateClassRoomManager.GetDepartmentsForDropdown();
             ViewBag.Rooms = allocateClassRoomManager.GetRoomForDropdown();
             ViewBag.WeekDays = allocateClassRoomManager.GetWeekDaysForDropdown();
+            ViewBag.Message = allocateClassRoomManager.saveAllocateClass(allocateClassRoom);   
             return View();          
         }
 
@@ -64,5 +60,20 @@ namespace UniversityManagementSystemWebApp.Controllers
             List<SelectListItem> courseList=allocateClassRoomManager.GetCourseByDeparmentId(DeptId);
             return Json(courseList, JsonRequestBehavior.AllowGet);
         }
+
+         [HttpGet]
+        public ActionResult ViewClassShedule()
+        {
+            ViewBag.Departments = allocateClassRoomManager.GetDepartmentsForDropdown();
+            return View();
+        }
+
+         [HttpPost]
+         public ActionResult ViewClassShedule(Department aDeptment)
+         {
+             ViewBag.Departments = allocateClassRoomManager.GetDepartmentsForDropdown();
+             ViewBag.ShowDetails = allocateClassRoomManager.showClassDetails(aDeptment);
+             return View();
+         }
 	}
 }

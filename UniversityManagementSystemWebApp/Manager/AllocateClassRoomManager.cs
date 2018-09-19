@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using UniversityManagementSystemWebApp.Gateway;
 using UniversityManagementSystemWebApp.Models;
+using UniversityManagementSystemWebApp.Models.ViewModel;
 
 
 namespace UniversityManagementSystemWebApp.Manager
@@ -44,7 +45,7 @@ namespace UniversityManagementSystemWebApp.Manager
             foreach (Course acourse in GetAllCourse)
             {
                 SelectListItem selectList = new SelectListItem();
-                selectList.Text = acourse.CourseName;
+                selectList.Text = acourse.CourseCode;
                 selectList.Value = acourse.CourseId.ToString();
                 selectListItems.Add(selectList);
             }
@@ -102,7 +103,15 @@ namespace UniversityManagementSystemWebApp.Manager
             }
             else
             {
-                return "Save successfully";
+                int row = allocateClassRoomGateway.SaveRoomForShedule(aAllocateClassRoom);
+                if (row > 0)
+                {
+                    return "Save successfully";
+                }
+                else
+                {
+                    return "Insert Failed";  
+                }
             }
         }
 
@@ -133,6 +142,11 @@ namespace UniversityManagementSystemWebApp.Manager
                 return true;
 
             }
+        }
+
+        public List<ViewClassSheduleViewModel> showClassDetails(Department aDeptment)
+        {
+            return allocateClassRoomGateway.showClassDetails(aDeptment);
         }
 
 

@@ -61,7 +61,7 @@
                 <td>
 
                     @Html.DropDownListFor(x => x.CourseId, new SelectList(string.Empty, "Value", "Text"))
-                    @Html.ValidationMessageFor(x => x.DayId)
+                    @Html.ValidationMessageFor(x => x.CourseId)
 
                 </td>
             </tr>
@@ -105,7 +105,7 @@
                             <div class='col-sm-6'>
                                 <div class="form-group">
                                     <div class='input-group date' id='datetimepicker3'>
-                                        <input type='text' name="FromTime" class="form-control" />
+                                        @Html.TextBoxFor(x => x.FromTime, new { @class = "form-control" })                                     
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-time"></span>
                                         </span>
@@ -115,8 +115,8 @@
                         </div>
                     </div>
 
-                    @*@Html.TextBoxFor(x => x.FromTime)
-                    @Html.ValidationMessageFor(x => x.FromTime)*@
+                   
+                    @Html.ValidationMessageFor(x => x.FromTime)
                 </td>
             </tr>
 
@@ -131,7 +131,8 @@
                             <div class='col-sm-6'>
                                 <div class="form-group">
                                     <div class='input-group date' id='datetimepicker4'>
-                                        <input type='text' name="ToTime" class="form-control" />
+                                        @Html.TextBoxFor(x => x.ToTime, new { @class = "form-control" }) 
+                                        
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-time"></span>
                                         </span>
@@ -139,9 +140,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    @*@Html.TextBoxFor(x => x.ToTime)
-                    @Html.ValidationMessageFor(x => x.ToTime)*@
+                    </div>                   
+                    @Html.ValidationMessageFor(x => x.ToTime)
                 </td>
             </tr>
 
@@ -162,7 +162,9 @@
 
 </div>
 
-       
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
         <script>
            
             $(document).ready(function () {
@@ -180,6 +182,7 @@
                         contentType: "application/json; charset=utf-8",
                         data: JSON.stringify(json),                  
                         success: function (data) {
+                            $("#CourseId").empty();
                             $.each(data, function (key, value) {
                                
                                 $("#CourseId").append('<option value=' + value.Value + '>' + value.Text + '</option>');
