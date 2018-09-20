@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace UniversityManagementSystemWebApp.Models
 {
     public class Enroll
     {
         public int EnrollId { get; set; }
-
+        [Required(ErrorMessage = "Please Select Student!")]
         public int StudentId { get; set; }
-
+        [Required(ErrorMessage = "Please Select Course!")]
         public int CourseId { get; set; }
         [Required]
         [DataType(DataType.Date)]

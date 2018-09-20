@@ -178,6 +178,7 @@
     <Compile Include="Models\Enroll.cs" />
     <Compile Include="Models\Semester.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\ViewModel\ShowResultViewModel.cs" />
     <Compile Include="Models\ViewModel\StudentDetailsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -316,6 +317,7 @@
     <Content Include="Views\Department\DepartmentDetails.cshtml" />
     <Content Include="Views\Student\Register.cshtml" />
     <Content Include="Views\EnrollCourse\Enroll.cshtml" />
+    <Content Include="Views\Student\Result.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

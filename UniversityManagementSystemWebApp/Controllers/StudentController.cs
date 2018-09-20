@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
 using UniversityManagementSystemWebApp.Manager;
 using UniversityManagementSystemWebApp.Models;
 using UniversityManagementSystemWebApp.Models.ViewModel;
+using UniversityManagementSystemWebApp.ViewModel;
 
 namespace UniversityManagementSystemWebApp.Controllers
 {
@@ -14,6 +16,8 @@ namespace UniversityManagementSystemWebApp.Controllers
     {
         private DepartmentManager aDepartmentManager;
         private StudentManager aStudentManager;
+        private CourseManager aCourseManager;
+        private EnrollCourseManager aEnrollCourseManager;
         //
         // GET: /Student/
 
@@ -21,6 +25,8 @@ namespace UniversityManagementSystemWebApp.Controllers
         {
             aDepartmentManager = new DepartmentManager();
             aStudentManager = new StudentManager();
+            aEnrollCourseManager = new EnrollCourseManager();
+            aCourseManager = new CourseManager();
         }
         [HttpGet]
         public ActionResult Register()
@@ -56,6 +62,19 @@ namespace UniversityManagementSystemWebApp.Controllers
 
             return View();
         }
+        [HttpGet]
+        public ActionResult Result()
+        {
+            ViewBag.RegNoList = aEnrollCourseManager.GetAllStudentRegNo();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Result(Student student)
+        {
+            ViewBag.RegNoList = aEnrollCourseManager.GetAllStudentRegNo();
+            return View();
+        }
 
         private string GenerateRegNo(Student student)
         {
@@ -64,6 +83,13 @@ namespace UniversityManagementSystemWebApp.Controllers
             string Serial = GetSerialFromRowCount(aStudentManager.GetRowCount(student.DepartmentId,Convert.ToInt32(GetYearFromDate(student.Date))));
 
             return Department + "-" + Year + "-" + Serial;
+        }
+
+
+        public JsonResult GetStudentResultById(int studentId)
+        {
+            List<ShowResultViewModel> resultList = aStudentManager.GetStudentResultById(studentId);
+            return Json(resultList, JsonRequestBehavior.AllowGet);
         }
 
         private string GetSerialFromRowCount(int rowCount)
@@ -79,5 +105,7 @@ namespace UniversityManagementSystemWebApp.Controllers
             string year = date.Year.ToString();
             return year;
         }
+
+
     }
 }

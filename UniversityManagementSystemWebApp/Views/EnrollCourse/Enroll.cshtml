@@ -57,7 +57,7 @@
 
                 <div class="col-md-10">
 
-                    <input class="readonly" type='text' name="Name" id="Name" readonly="readonly"   />
+                    <input class="readonly" type='text' name="Name" id="Name" readonly="readonly" />
                 </div>
 
             </div>
@@ -69,7 +69,7 @@
 
                 <div class="col-md-10">
 
-                    <input class="readonly" type='text' name="Email" id="Email" readonly="readonly"  />
+                    <input class="readonly" type='text' name="Email" id="Email" readonly="readonly" />
                 </div>
 
             </div>
@@ -81,12 +81,12 @@
                 </div>
                 <div class="col-md-10">
 
-                    <input class="readonly" type='text' name="Department" id="Department" readonly="readonly"/>
+                    <input class="readonly" type='text' name="Department" id="Department" readonly="readonly" />
                 </div>
 
             </div>
-            
-            
+
+
             <div class="form-group">
                 <div class="col-md-2 control-label">
                     @Html.LabelFor(x => x.CourseId)
@@ -97,11 +97,15 @@
 
                     @Html.DropDownListFor(x => x.CourseId, new SelectList(string.Empty, "Value", "Text"))
                     @Html.ValidationMessageFor(x => x.CourseId)
+
+                    <script type="text/javascript">
+                        $("#CourseId").append('<option value=""> --Select-- </option>');
+                    </script>
                 </div>
             </div>
-            
-            
-             <div class="form-group">
+
+
+            <div class="form-group">
                 <div class="col-md-2 control-label">
                     @Html.LabelFor(x => x.Date)
                 </div>
@@ -124,7 +128,7 @@
 
 
 
-         <div class="col-md-3 control-label">
+            <div class="col-md-3 control-label">
                 <button class="btn btn-success" type="submit">Enroll</button>
             </div>
             if (ViewBag.Message != null)
@@ -135,7 +139,7 @@
 
 
             <script type="text/javascript">
-                
+
 
                 $(document).ready(function () {
 
@@ -144,7 +148,7 @@
                     //cascading dropdownlist
                     $("#StudentId").change(function () {
                         var studentId = $("#StudentId").val();
-                        alert("show dept id " + studentId);
+                        // alert("show dept id " + studentId);
                         var json = { studentId: studentId };
 
                         //call for course dropdown

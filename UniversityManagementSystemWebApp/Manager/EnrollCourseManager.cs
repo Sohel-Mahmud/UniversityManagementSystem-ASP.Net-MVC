@@ -12,7 +12,7 @@ namespace UniversityManagementSystemWebApp.Controllers
     public class EnrollCourseManager
     {
         EnrollCourseGateway aEnrollCourseGateway = new EnrollCourseGateway();
-        CourseGateway aCourseGateway = new CourseGateway();
+       StudentGateway aStudentGateway = new StudentGateway();
         public string EnrollCourse(Enroll enroll)
         {
             if (!aEnrollCourseGateway.IsEnrollExixts(enroll))
@@ -35,12 +35,12 @@ namespace UniversityManagementSystemWebApp.Controllers
 
         public List<Student> GetAllStudentRegNo()
         {
-            return aEnrollCourseGateway.GetAllStudentRegNo();
+            return aStudentGateway.GetAllStudentRegNo();
         }
 
         public StudenResultViewModel GetAllStudentInfoByStudentId(int studentId)
         {
-            return aEnrollCourseGateway.GetAllStudentInfoByStudentId(studentId);
+            return aStudentGateway.GetAllStudentInfoByStudentId(studentId);
         }
 
         

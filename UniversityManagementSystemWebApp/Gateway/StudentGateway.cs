@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.DynamicData;
 using UniversityManagementSystemWebApp.Models;
 using UniversityManagementSystemWebApp.Models.ViewModel;
+using UniversityManagementSystemWebApp.ViewModel;
 
 namespace UniversityManagementSystemWebApp.Gateway
 {
@@ -93,6 +94,55 @@ namespace UniversityManagementSystemWebApp.Gateway
 
         }
 
+
+        public List<Student> GetAllStudentRegNo()
+        {
+            string query = "SELECT StudentId,RegistrationNo FROM Student";
+            Command = new SqlCommand(query, Connection);
+            Connection.Open();
+            List<Student> studentList = new List<Student>();
+            Reader = Command.ExecuteReader();
+            while (Reader.Read())
+            {
+                Student aStudent = new Student();
+                aStudent.StudentId = Convert.ToInt32(Reader["StudentId"]);
+                aStudent.RegistrationNo = Reader["RegistrationNo"].ToString();
+                studentList.Add(aStudent);
+            }
+            Reader.Close();
+            Connection.Close();
+            return studentList;
+        }
+
+
+        public StudenResultViewModel GetAllStudentInfoByStudentId(int studentId)
+        {
+            string query = "SELECT StudentName,Email,Code FROM Student I" +
+                           "NNER JOIN Departments ON " +
+                           "Student.DepartmentId=Departments.DeptId " +
+                           "AND StudentId=@StudentId";
+            Command = new SqlCommand(query, Connection);
+            Command.Parameters.AddWithValue("@StudentId", studentId);
+            Connection.Open();
+            Reader = Command.ExecuteReader();
+            Reader.Read();
+            StudenResultViewModel aStudentInfo = new StudenResultViewModel();
+            if (Reader.HasRows)
+            {
+
+
+                aStudentInfo.StudentName = Reader["StudentName"].ToString();
+                aStudentInfo.Email = Reader["Email"].ToString();
+                aStudentInfo.DeptCode = Reader["Code"].ToString();
+
+            }
+            Reader.Close();
+            Connection.Close();
+            return aStudentInfo;
+        }
+
+
+
         public List<Student> GetAllStudents()
         {
             string query = "SELECT * FROM Student";
@@ -115,6 +165,43 @@ namespace UniversityManagementSystemWebApp.Gateway
             Reader.Close();
             Connection.Close();
             return StudentList;
+        }
+
+
+        public List<ShowResultViewModel> GetStudentResultById(int studentId)
+        {
+            string query =
+                "SELECT Course.CourseCode AS CourseCode,Course.CourseName AS CourseName,Grade.GradeName AS Grade FROM Course " +
+                "INNER JOIN Enroll ON Course.CourseId = Enroll.CourseId " +
+                "LEFT JOIN Grade ON Grade.GradeId = Enroll.GradeId " +
+                "WHERE  Enroll.StudentId = @studentId";
+
+            Command = new SqlCommand(query, Connection);
+            Command.Parameters.AddWithValue("@studentId", studentId);
+            Connection.Open();
+            Reader = Command.ExecuteReader();
+
+            List<ShowResultViewModel> Results = new List<ShowResultViewModel>();
+            while (Reader.Read())
+            {
+                ShowResultViewModel result = new ShowResultViewModel();
+                result.CourseCode = Reader["CourseCode"].ToString();
+                result.CourseName = Reader["CourseName"].ToString();
+                string grade = Reader["Grade"].ToString();
+
+                if (string.IsNullOrEmpty(grade))
+                {
+                    result.Grade = "Not Graded Yet!";
+                }
+
+                else
+                {
+                    result.Grade = Reader["Grade"].ToString();
+                }
+               // result.Grade = string.IsNullOrEmpty(grade) ? Reader["Grade"].ToString() : "Not Graded Yet!";
+                Results.Add(result);
+            }
+            return Results;
         }
 
 

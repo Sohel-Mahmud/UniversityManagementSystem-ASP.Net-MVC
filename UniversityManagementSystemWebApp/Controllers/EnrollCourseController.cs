@@ -14,10 +14,12 @@ namespace UniversityManagementSystemWebApp.Controllers
     {
         private CourseManager aCourseManager;
         private EnrollCourseManager aEnrollCourseManager;
+        private StudentManager aStudentManager;
         public EnrollCourseController()
         {
             aCourseManager = new CourseManager();
             aEnrollCourseManager = new EnrollCourseManager();
+            aStudentManager = new StudentManager();
         }
         //
         // GET: /Enroll/
@@ -38,6 +40,7 @@ namespace UniversityManagementSystemWebApp.Controllers
         public ActionResult Enroll(Enroll enroll)
         {
             ViewBag.RegNoList = aEnrollCourseManager.GetAllStudentRegNo();
+           // enroll.GradeId = 14;
             enroll.Action = "insert";
             ViewBag.Message = aEnrollCourseManager.EnrollCourse(enroll);
             return View();

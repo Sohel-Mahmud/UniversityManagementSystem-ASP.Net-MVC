@@ -19,6 +19,7 @@ namespace UniversityManagementSystemWebApp.Gateway
             Command.Parameters.AddWithValue("@StudentId", enroll.StudentId);
             Command.Parameters.AddWithValue("@CourseId", enroll.CourseId);
             Command.Parameters.AddWithValue("@Date", DateTime.ParseExact(enroll.Date, "dd/MM/yyyy", null));
+           // Command.Parameters.AddWithValue("@GradeId", enroll.GradeId);
             Command.Parameters.AddWithValue("@Action", enroll.Action);
 
             Connection.Open();
@@ -45,48 +46,6 @@ namespace UniversityManagementSystemWebApp.Gateway
             Reader.Close();
             Connection.Close();
             return false;
-        }
-        public List<Student> GetAllStudentRegNo()
-        {
-            string query = "SELECT StudentId,RegistrationNo FROM Student";
-            Command = new SqlCommand(query, Connection);
-            Connection.Open();
-            List<Student> studentList = new List<Student>();
-            Reader = Command.ExecuteReader();
-            while (Reader.Read())
-            {
-                Student aStudent = new Student();
-                aStudent.StudentId = Convert.ToInt32(Reader["StudentId"]);
-                aStudent.RegistrationNo = Reader["RegistrationNo"].ToString();
-                studentList.Add(aStudent);
-            }
-            Reader.Close();
-            Connection.Close();
-            return studentList;
-        }
-
-
-        public StudenResultViewModel GetAllStudentInfoByStudentId(int studentId)
-        {
-            string query = "SELECT StudentName,Email,Code FROM Student INNER JOIN Departments ON Student.DepartmentId=Departments.DeptId AND StudentId=@StudentId";
-            Command = new SqlCommand(query, Connection);
-            Command.Parameters.AddWithValue("@StudentId", studentId);
-            Connection.Open();
-            Reader = Command.ExecuteReader();
-            Reader.Read();
-            StudenResultViewModel aStudentInfo = new StudenResultViewModel();
-            if (Reader.HasRows)
-            {
-
-
-                aStudentInfo.StudentName = Reader["StudentName"].ToString();
-                aStudentInfo.Email = Reader["Email"].ToString();
-                aStudentInfo.DeptCode = Reader["Code"].ToString();
-
-            }
-            Reader.Close();
-            Connection.Close();
-            return aStudentInfo;
         }
 
     }

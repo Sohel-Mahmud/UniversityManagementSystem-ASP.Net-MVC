@@ -5,6 +5,7 @@ using System.Web;
 using UniversityManagementSystemWebApp.Gateway;
 using UniversityManagementSystemWebApp.Models;
 using UniversityManagementSystemWebApp.Models.ViewModel;
+using UniversityManagementSystemWebApp.ViewModel;
 
 namespace UniversityManagementSystemWebApp.Manager
 {
@@ -55,6 +56,12 @@ namespace UniversityManagementSystemWebApp.Manager
         public List<Student> GetAllStudents()
         {
             return studentGateway.GetAllStudents();
+        }
+
+
+        public List<ShowResultViewModel> GetStudentResultById(int studentId)
+        {
+            return studentGateway.GetStudentResultById(studentId);
         }
     }
 
