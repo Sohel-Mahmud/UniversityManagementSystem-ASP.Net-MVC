@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using UniversityManagementSystemWebApp.Manager;
 using UniversityManagementSystemWebApp.Models;
+using UniversityManagementSystemWebApp.Models.ViewModel;
 
 namespace UniversityManagementSystemWebApp.Controllers
 {
@@ -68,12 +69,18 @@ namespace UniversityManagementSystemWebApp.Controllers
             return View();
         }
 
-         [HttpPost]
-         public ActionResult ViewClassShedule(Department aDeptment)
+         //[HttpPost]
+         //public ActionResult ViewClassShedule(Department aDeptment)
+         //{
+         //    ViewBag.Departments = allocateClassRoomManager.GetDepartmentsForDropdown();
+         //    ViewBag.ShowDetails = allocateClassRoomManager.showClassDetails(aDeptment);
+         //    return View();
+         //}
+
+         public JsonResult GetViewClassSheduleByDeptId(int DeptId)
          {
-             ViewBag.Departments = allocateClassRoomManager.GetDepartmentsForDropdown();
-             ViewBag.ShowDetails = allocateClassRoomManager.showClassDetails(aDeptment);
-             return View();
+             List<ViewClassSheduleViewModel> viewClassShedulelist = allocateClassRoomManager.showClassDetails(DeptId);
+             return Json(viewClassShedulelist, JsonRequestBehavior.AllowGet);
          }
 	}
 }

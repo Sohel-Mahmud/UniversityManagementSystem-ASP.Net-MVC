@@ -189,12 +189,12 @@ namespace UniversityManagementSystemWebApp.Gateway
             return rowAffected;
         }
 
-
-        public List<ViewClassSheduleViewModel> showClassDetails(Department aDepartment)
+         //public List<ViewClassSheduleViewModel> showClassDetails(Department aDepartment)
+        public List<ViewClassSheduleViewModel> showClassDetails(int DeptId)
         {
             string query = "SELECT CourseId,CourseCode,CourseName FROM Course WHERE DeptId=@DeptId";
             Command = new SqlCommand(query, Connection);
-            Command.Parameters.AddWithValue("@DeptId", aDepartment.DeptId);
+            Command.Parameters.AddWithValue("@DeptId", DeptId);
             Connection.Open();
             List<ViewClassSheduleViewModel> viewClassShedule = new List<ViewClassSheduleViewModel>();
             Reader = Command.ExecuteReader();

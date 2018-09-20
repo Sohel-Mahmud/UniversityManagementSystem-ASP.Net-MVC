@@ -144,10 +144,14 @@ namespace UniversityManagementSystemWebApp.Manager
             }
         }
 
-        public List<ViewClassSheduleViewModel> showClassDetails(Department aDeptment)
+        public List<ViewClassSheduleViewModel> showClassDetails(int DeptId)
         {
-            return allocateClassRoomGateway.showClassDetails(aDeptment);
+            return allocateClassRoomGateway.showClassDetails(DeptId);
         }
+        //public List<ViewClassSheduleViewModel> showClassDetails(Department aDeptment)
+        //{
+        //    return allocateClassRoomGateway.showClassDetails(aDeptment);
+        //}
 
 
     }

@@ -15,67 +15,77 @@
     <title>ViewClassShedule</title>
 </head>
 <body>
-    <div>
-        @using (Html.BeginForm("ViewClassShedule", "AllocateClassRoom", FormMethod.Post, new { id = "AllocateClassRoomForm", @class = "" }))
-        {
-            <table>
-                <tr>
-                    <td>
+<div>
+    @using (Html.BeginForm("ViewClassShedule", "AllocateClassRoom", FormMethod.Post, new {id = "AllocateClassRoomForm", @class = ""}))
+    {
+        <table>
+            <tr>
+                <td>
 
-                        @Html.LabelFor(x => x.DeptId)
-                    </td>
-                    <td>
+                    @Html.LabelFor(x => x.DeptId)
+                </td>
+                <td>
 
-                        @Html.DropDownListFor(x => x.DeptId, new SelectList(departments, "Value", "Text"))
-                        @Html.ValidationMessageFor(x => x.DeptId)
+                    @Html.DropDownListFor(x => x.DeptId, new SelectList(departments, "Value", "Text"))
+                    @Html.ValidationMessageFor(x => x.DeptId)
 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" value="Save" />
-                    </td>
-                </tr>
-            </table>
-            if (shedules != null)
-            {
-                <div class="container">
-                    <h2>Basic Table</h2>
-                    <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Course Code</th>
-                                <th>Course Name</th>
-                                <th>Schedule</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                </td>
+            </tr>
+            
+        </table>
+            
+            <!--Table for showing details-->
+            <div class="container">             
+                <table class="table">
+                    <thead id="Tablehead">
+                   
+                    </thead>
+                    <tbody id="ClassSheduleDetails">
 
+                    </tbody>
+                </table>
+            </div>
+        
+    }
+</div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
 
-                            @foreach (ViewClassSheduleViewModel aViewClassShedule in shedules)
-                            {
-                                <tr>
-                                    <td>@aViewClassShedule.CourseCode</td>
-                                    <td>@aViewClassShedule.CourseName</td>
-                                    <td>
-                                        @foreach (string asheduleInfo in aViewClassShedule.Scheduleinfo)
-                                        {
-                                            @asheduleInfo;
-                                            
-                                        }
-                                    </td>
-                                </tr>
-
-                            }
+            $(document).ready(function () {
 
 
 
-                        </tbody>
-                    </table>
-                </div>
-            }
-        }
-    </div>
+                //cascading dropdownlist
+                $("#DeptId").change(function () {
+                    var deptId = $("#DeptId").val();
+                 
+                   var json = { DeptId: deptId };
+                    $.ajax({
+                        type: "POST",
+                        url : '@Url.Action("GetViewClassSheduleByDeptId", "AllocateClassRoom")',
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(json),
+                        success: function (data) {
+                            $("#ClassSheduleDetails").empty();
+                            $("#Tablehead").empty();
+                            $("#Tablehead").append('<tr> <th>CourseCode</th> <th>CourseName</th> <th>Schedule</th></tr>');
+                            $.each(data, function (key, value) {
+                               
+                                $("#ClassSheduleDetails").append('<tr> <td>' + value.CourseCode + '</td> <td>' + value.CourseName + '</td> <td>' + $.each(value.Scheduleinfo, function(index, innerValue) {                                 
+                                    innerValue;
+                                   
+                                }) + '</td></tr>');
+                          
+                            });
+                        }
+
+                    });
+
+                });
+            });
+    </script>
+
 </body>
 </html>
