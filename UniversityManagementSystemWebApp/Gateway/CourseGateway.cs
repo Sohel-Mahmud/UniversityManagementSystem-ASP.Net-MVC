@@ -7,12 +7,12 @@ using UniversityManagementSystemWebApp.Models;
 
 namespace UniversityManagementSystemWebApp.Gateway
 {
-    public class CourseGateway:BaseGateway
+    public class CourseGateway : BaseGateway
     {
         public int SaveCourse(Course course)
         {
             string query = "INSERT INTO Course VALUES(@courseName,@courseCode,@credit,@description,@deptId,@semesterId)";
-            Command = new SqlCommand(query,Connection);
+            Command = new SqlCommand(query, Connection);
             Command.Parameters.AddWithValue("@courseName", course.CourseName);
             Command.Parameters.AddWithValue("@courseCode", course.CourseCode);
             Command.Parameters.AddWithValue("@credit", course.Credit);
@@ -42,16 +42,41 @@ namespace UniversityManagementSystemWebApp.Gateway
                 aCourse.CourseCode = Reader["CourseCode"].ToString();
                 Reader.Close();
                 Connection.Close();
-                return aCourse.CourseName+" "+aCourse.CourseCode+" is existed, please enter another";
+                return aCourse.CourseName + " " + aCourse.CourseCode + " is existed, please enter another";
             }
             Reader.Close();
             Connection.Close();
             return "success";
         }
+
+        public List<Course> GetAllCourseByStudentId(int studentId)
+        {
+            string query = "SELECT Course.CourseId,Course.CourseCode FROM Course INNER JOIN Student ON Course.DeptId=Student.DepartmentId AND Student.StudentId=@StudentId";
+            Command = new SqlCommand(query, Connection);
+            Command.Parameters.AddWithValue("@StudentId", studentId);
+            Connection.Open();
+            List<Course> allCourseList = new List<Course>();
+            Reader = Command.ExecuteReader();
+            while (Reader.Read())
+            {
+                Course aCourse = new Course();
+                aCourse.CourseId = Convert.ToInt32(Reader["CourseId"]);
+                aCourse.CourseCode = Reader["CourseCode"].ToString();
+                allCourseList.Add(aCourse);
+            }
+            Reader.Close();
+            Connection.Close();
+            return allCourseList;
+        }
+
+
+
+
+
         public List<Semester> GetAllSemesters()
         {
             string query = "SELECT * FROM Semester";
-            Command = new SqlCommand(query,Connection);
+            Command = new SqlCommand(query, Connection);
             Connection.Open();
             List<Semester> semesterList = new List<Semester>();
             Reader = Command.ExecuteReader();

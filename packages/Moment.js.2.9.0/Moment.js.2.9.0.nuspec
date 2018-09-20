@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Moment.js</id>
+    <version>2.9.0</version>
+    <authors>Tim Wood</authors>
+    <owners>Tim Wood</owners>
+    <licenseUrl>https://raw.github.com/timrwood/moment/master/LICENSE</licenseUrl>
+    <projectUrl>http://momentjs.com/</projectUrl>
+    <iconUrl>http://pbs.twimg.com/profile_images/482670411402858496/Xrtdc94q_normal.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A lightweight javascript date library for parsing, manipulating, and formatting dates.</description>
+    <releaseNotes>- Add LTS localised format that includes seconds
+            - Added formatToken 'x' for unix offset in milliseconds #1938
+            - Support 24:00:00.000 to mean next day, at midnight.
+            - Accept 'date' key when creating moment with object
+            - Use native toISOString when we can
+            - Some bugfixes and language improvements</releaseNotes>
+    <tags>JavaScript date time browser node.js</tags>
+  </metadata>
+</package>
