@@ -7,6 +7,10 @@ using UniversityManagementSystemWebApp.Gateway;
 using UniversityManagementSystemWebApp.Models;
 
 namespace UniversityManagementSystemWebApp.Manager
+using System.Web.Mvc;
+using UniversityManagementSystemWebApp.Models;
+
+namespace UniversityManagementSystemWebApp.Gateway
 {
     public class CourseManager
     {
@@ -75,5 +79,6 @@ namespace UniversityManagementSystemWebApp.Manager
             }
             return selectListItems;
         }
+
     }
 }

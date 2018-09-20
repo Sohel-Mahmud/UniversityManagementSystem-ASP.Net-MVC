@@ -158,12 +158,24 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EnrollCourseController.cs" />
     <Compile Include="Manager\EnrollCourseManager.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Gateway\BaseGateway.cs" />
     <Compile Include="Gateway\CourseGateway.cs" />
+=======
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Gateway\BaseGateway.cs" />
+    <Compile Include="Gateway\CourseGateway.cs" />
+    <Compile Include="Gateway\TeacherGateway.cs" />
+    <Compile Include="Manager\CourseManager.cs" />
+>>>>>>> master
     <Compile Include="Gateway\DepartmentGateway.cs" />
     <Compile Include="Gateway\EnrollCourseGateway.cs" />
     <Compile Include="Gateway\StudentGateway.cs" />
@@ -172,6 +184,7 @@
     </Compile>
     <Compile Include="Manager\CourseManager.cs" />
     <Compile Include="Manager\DepartmentManager.cs" />
+<<<<<<< HEAD
     <Compile Include="Manager\StudentManager.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Department.cs" />
@@ -180,6 +193,17 @@
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\ViewModel\ShowResultViewModel.cs" />
     <Compile Include="Models\ViewModel\StudentDetailsViewModel.cs" />
+=======
+    <Compile Include="Manager\TeacherManager.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AssignCourse.cs" />
+    <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Designations.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Semester.cs" />
+    <Compile Include="Models\Teacher.cs" />
+>>>>>>> master
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Models\ViewModel\StudenResultViewModel.cs" />
@@ -315,9 +339,15 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Department\SaveDepartments.cshtml" />
     <Content Include="Views\Department\DepartmentDetails.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Student\Register.cshtml" />
     <Content Include="Views\EnrollCourse\Enroll.cshtml" />
     <Content Include="Views\Student\Result.cshtml" />
+=======
+    <Content Include="Views\Course\SaveCourse.cshtml" />
+    <Content Include="Views\Teacher\SaveTeacher.cshtml" />
+    <Content Include="Views\Teacher\AssignCourse.cshtml" />
+>>>>>>> master
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
