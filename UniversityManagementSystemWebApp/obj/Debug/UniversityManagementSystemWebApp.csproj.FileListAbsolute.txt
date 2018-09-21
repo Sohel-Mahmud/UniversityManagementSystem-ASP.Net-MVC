@@ -1,3 +1,115 @@
+<<<<<<< HEAD
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\UniversityManagementSystemWebApp.dll.config
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\UniversityManagementSystemWebApp.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\UniversityManagementSystemWebApp.pdb
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Antlr3.Runtime.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\EntityFramework.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\EntityFramework.SqlServer.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.AspNet.Identity.Core.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.Cookies.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.Facebook.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.Google.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.OAuth.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.Twitter.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Web.Infrastructure.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Newtonsoft.Json.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Owin.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\System.Web.Helpers.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\System.Web.Mvc.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\System.Web.Optimization.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\System.Web.Razor.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\System.Web.WebPages.Deployment.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\System.Web.WebPages.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\System.Web.WebPages.Razor.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\WebGrease.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\System.Web.Helpers.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\System.Web.Mvc.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\System.Web.Optimization.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\System.Web.Razor.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\System.Web.WebPages.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\System.Web.WebPages.Deployment.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\System.Web.WebPages.Razor.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Newtonsoft.Json.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Antlr3.Runtime.pdb
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\EntityFramework.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\EntityFramework.SqlServer.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.AspNet.Identity.Core.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.Facebook.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.Cookies.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.OAuth.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.Google.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.Twitter.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\obj\Debug\UniversityManagementSystemWebApp.csprojResolveAssemblyReference.cache
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\obj\Debug\UniversityManagementSystemWebApp.dll
+E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\obj\Debug\UniversityManagementSystemWebApp.pdb
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\UniversityManagementSystemWebApp.dll.config
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\UniversityManagementSystemWebApp.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\UniversityManagementSystemWebApp.pdb
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Antlr3.Runtime.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\EntityFramework.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\EntityFramework.SqlServer.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Newtonsoft.Json.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Owin.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\System.Web.Helpers.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\System.Web.Mvc.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\System.Web.Optimization.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\System.Web.Razor.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\System.Web.WebPages.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\System.Web.WebPages.Razor.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\WebGrease.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\System.Web.Helpers.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\System.Web.Mvc.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\System.Web.Optimization.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\System.Web.Razor.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\System.Web.WebPages.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\System.Web.WebPages.Razor.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Newtonsoft.Json.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Antlr3.Runtime.pdb
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\EntityFramework.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\EntityFramework.SqlServer.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\obj\Debug\UniversityManagementSystemWebApp.csprojResolveAssemblyReference.cache
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\obj\Debug\UniversityManagementSystemWebApp.dll
+C:\Users\Forman khan\Desktop\University_Management_System\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\obj\Debug\UniversityManagementSystemWebApp.pdb
+=======
 E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\UniversityManagementSystemWebApp.dll.config
 E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\UniversityManagementSystemWebApp.dll
 E:\BITM_Works\UniversityManagementSystemWebApp\UniversityManagementSystemWebApp\bin\UniversityManagementSystemWebApp.pdb
@@ -275,4 +387,5 @@ D:\BITM class work\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSy
 D:\BITM class work\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\obj\Debug\UniversityManagementSystemWebApp.csprojResolveAssemblyReference.cache
 D:\BITM class work\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\obj\Debug\UniversityManagementSystemWebApp.dll
 D:\BITM class work\UniversityManagementSystem-ASP.Net-MVC\UniversityManagementSystemWebApp\obj\Debug\UniversityManagementSystemWebApp.pdb
+>>>>>>> master
 >>>>>>> master

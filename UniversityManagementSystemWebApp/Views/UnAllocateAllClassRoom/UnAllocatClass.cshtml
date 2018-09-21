@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = Layout;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UnAllocatClass</title>
+</head>
+<body>
+<div>
+                               <!--Name    ,     Action,            Controller-->
+    @Html.ActionLink("UnAllocate All ClassRoom", "UnAllocatClass", "UnAllocateAllClassRoom", new { confirm = true },
+        new { onclick = "return confirm('Are you sure to unassign all courses?')" })
+
+
+</div>
+</body>
+</html>
