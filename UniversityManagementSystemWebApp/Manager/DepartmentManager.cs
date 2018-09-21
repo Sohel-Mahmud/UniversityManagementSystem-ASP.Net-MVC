@@ -1,7 +1,9 @@
-﻿using System;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using UniversityManagementSystemWebApp.Gateway;
 using UniversityManagementSystemWebApp.Models;
 
@@ -46,6 +48,24 @@ namespace UniversityManagementSystemWebApp.Manager
         public List<Department> GetAllDepartments()
         {
             return departmentGateway.GetAllDepartments();
+        }
+
+        public Department GetDepartmentbyId(int id)
+        {
+            return departmentGateway.GetDepartmentbyId(id);
+        }
+        public List<SelectListItem> GetAllDepartmentForDropdown()
+        {
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            selectListItems.Add(new SelectListItem(){Text = "--Select--",Value = ""});
+            foreach (Department department in GetAllDepartments())
+            {
+                SelectListItem selectListItem = new SelectListItem();
+                selectListItem.Text = department.Name;
+                selectListItem.Value = department.DeptId.ToString();
+                selectListItems.Add(selectListItem);
+            }
+            return selectListItems;
         }
     }
 }

@@ -1,0 +1,102 @@
+﻿@model UniversityManagementSystemWebApp.Models.Teacher
+@{
+//    Layout = null;
+    List<SelectListItem> departments = ViewBag.Department;
+    List<SelectListItem> designations = ViewBag.Designations;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SaveTeacher</title>
+</head>
+<body>
+<h2>Register Teacher</h2>
+    <hr />
+<div class="form-horizontal">
+    @using (Html.BeginForm("SaveTeacher", "Teacher", FormMethod.Post, new {id = "registerTeacherForm"}))
+    {
+        <div class="form-group ">
+            <div class="col-md-2 control-label">
+                @Html.Label("Teacher's Name")
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(x => x.Name)
+                @Html.ValidationMessageFor(x => x.Name)
+            </div>
+        </div>
+        <div class="form-group ">
+            <div class="col-md-2 control-label">
+                @Html.Label("Teacher's Address")
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(x => x.Address)
+                @Html.ValidationMessageFor(x => x.Address)
+            </div>
+        </div>
+        <div class="form-group ">
+            <div class="col-md-2 control-label">
+                @Html.Label("Email")
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(x => x.Email)
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+        </div>
+        <div class="form-group ">
+            <div class="col-md-2 control-label">
+                @Html.Label("Contact Number")
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(x => x.ContactNo)
+                @Html.ValidationMessageFor(x => x.ContactNo)
+            </div>
+        </div>
+         <div class="form-group ">
+            <div class="col-md-2 control-label">
+                @Html.Label("Designation")
+            </div>
+            <div class="col-md-10">
+                @Html.DropDownListFor(x => x.DesignationId, new SelectList(designations, "Value", "Text"), new {@class = "col-md-10"})
+                @Html.ValidationMessageFor(x => x.DesignationId)
+            </div>
+        </div>
+        <div class="form-group ">
+            <div class="col-md-2 control-label">
+                @Html.Label("Department")
+            </div>
+            <div class="col-md-10">
+                @Html.DropDownListFor(x => x.DepartmentId, new SelectList(departments, "Value", "Text"), new {@class = "col-md-10"})
+                @Html.ValidationMessageFor(x => x.DepartmentId)
+            </div>
+        </div>
+        <div class="form-group ">
+            <div class="col-md-2 control-label">
+                @Html.Label("Credit to be taken")
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(x => x.Credit)
+                @Html.ValidationMessageFor(x => x.Credit)
+            </div>
+        </div>
+        <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-default" value="Save"/>
+                    
+                </div>
+                <br/>
+                @if (ViewBag.Message != null)
+{
+    <label class="col-md-10">@ViewBag.Message</label>
+}
+           </div>
+    }
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</div>
+</body>
+</html>

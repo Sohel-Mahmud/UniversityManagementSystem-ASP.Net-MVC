@@ -1,0 +1,238 @@
+﻿@model UniversityManagementSystemWebApp.Models.AssignCourse
+@{
+    //Layout = null;
+    List<SelectListItem> departments = ViewBag.Department;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AssignCourse</title>
+</head>
+<body>
+    <h2>Course Assign to Teacher</h2>
+    <hr />
+    <div class="form-horizontal">
+        @using (Html.BeginForm("AssignCourse", "Teacher", FormMethod.Post, new { id = "assignCourseForm" }))
+        {
+            <div class="form-group ">
+                <div class="col-md-2 control-label">
+                    @Html.Label("Department")
+                </div>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(x => x.DepartmentId, new SelectList(departments, "Value", "Text"), new { @class = "col-md-10" })
+                    @Html.ValidationMessageFor(x => x.DepartmentId)
+                </div>
+            </div>
+            <div class="form-group ">
+                <div class="col-md-2 control-label">
+                    @Html.Label("Teacher's Name")
+                </div>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(x => x.TeacherId, new SelectList(""), "--Select--", new { @class = "col-md-10" })
+                    @Html.ValidationMessageFor(x => x.TeacherId)
+                </div>
+            </div>
+            <div class="form-group ">
+                <div class="col-md-2 control-label">
+                    @Html.Label("Credit To be Taken")
+                </div>
+                <div class="col-md-10">
+                    @Html.TextBox("CreditLimit")
+                </div>
+            </div>
+            <div class="form-group ">
+                <div class="col-md-2 control-label">
+                    @Html.Label("Remaining Credit")
+                </div>
+                <div class="col-md-10">
+                    @Html.TextBox("remainigCredit")
+                </div>
+            </div>
+            <div class="form-group ">
+                <div class="col-md-2 control-label">
+                    @Html.Label("Course Code")
+                </div>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(x => x.CourseId, new SelectList(""), "--Select--", new {@class = "col-md-10"})
+                    @Html.ValidationMessageFor(x => x.CourseId)
+                </div>
+            </div>
+             <div class="form-group ">
+                <div class="col-md-2 control-label">
+                    @Html.Label("Course Name")
+                </div>
+                <div class="col-md-10">
+                    @Html.TextBox("CourseName")
+                </div>
+            </div>
+            <div class="form-group ">
+                <div class="col-md-2 control-label">
+                    @Html.Label("Course Credit")
+                </div>
+                <div class="col-md-10">
+                    @Html.TextBox("Credit")
+                </div>
+            </div>
+              <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-default" value="Assign"/>
+                    
+                </div>
+                <br/>
+                @if (ViewBag.Message != null)
+{
+    <label class="col-md-10">@ViewBag.Message</label>
+}
+           </div>
+        }
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('#DepartmentId').change(function () {
+
+                var departmentId = $('#DepartmentId').val();
+                //alert("dept id " + departmentId);
+                var json = { DepartmentId: departmentId };
+
+                $.ajax({
+
+                    type: "POST",
+
+                    url: '@Url.Action("GetTeacherByDeptId", "Teacher")',
+                    //url: '/Department/GetStudentsByDepartmentId',
+
+                    contentType: "application/json; charset=utf-8",
+
+                    data: JSON.stringify(json),
+
+                    success: function (data) {
+
+
+                        //$("#StudentDetails").empty();
+                        $("#TeacherId").empty();
+                        $("#TeacherId").append('<option value="">--Select--</option>');
+
+
+
+                        $.each(data, function (key, value) {
+
+                            $("#TeacherId").append('<option value=' + value.TeacherId + '>' + value.Name + '</option>');
+                            //$("#StudentDetails").append('<tr> <td>'+value.StudentName+'</td>   <td>'+value.Address+'</td>   <td>'+value.DepartmentName+'</td></tr>');
+
+                        });
+
+                    }
+                });
+
+                $.ajax({
+
+                    type: "POST",
+
+                    url: '@Url.Action("GetAllCourseCodeByDeptId", "Teacher")',
+                    //url: '/Department/GetStudentsByDepartmentId',
+
+                    contentType: "application/json; charset=utf-8",
+
+                    data: JSON.stringify(json),
+
+                    success: function (data) {
+
+
+                        //$("#StudentDetails").empty();
+                        $("#CourseId").empty();
+                        $("#CourseId").append('<option value="">--Select--</option>');
+
+
+
+                        $.each(data, function (key, value) {
+
+                            $("#CourseId").append('<option value=' + value.CourseId + '>' + value.CourseCode + '</option>');
+                            //$("#StudentDetails").append('<tr> <td>'+value.StudentName+'</td>   <td>'+value.Address+'</td>   <td>'+value.DepartmentName+'</td></tr>');
+
+                        });
+
+                    }
+                });
+
+
+            });
+
+            $('#TeacherId').change(function () {
+
+                var teacherId = $('#TeacherId').val();
+                //alert("dept id " + teacherId);
+                var json = { TeacherId: teacherId };
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetTeacherInfoByTeacherId","Teacher")',
+
+                    contentType: "application/json; charset=utf-8",
+
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        if (data != null) {
+                            $('#CreditLimit').val(data.Credit);
+                        } else {
+                            alert("something went wrong");
+                        }
+                    }
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetCreditTakenSumOfTeacherByTeacherId","Teacher")',
+
+                    contentType: "application/json; charset=utf-8",
+
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        var value = data;
+                        
+                        if (value != null) {
+                                                
+                            $('#remainigCredit').val(value);                       
+                        }
+                    }
+                });
+
+            });
+
+
+            $('#CourseId').change(function () {
+
+                var courseId = $('#CourseId').val();
+                //alert("dept id " + courseId);
+                var json = { CourseId: courseId };
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetCourseNameCreditByCourseId","Teacher")',
+
+                    contentType: "application/json; charset=utf-8",
+
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        if (data != null) {
+                            $('#CourseName').val(data.CourseName);
+                            $('#Credit').val(data.Credit);
+                        } else {
+                            alert("something went wrong");
+                        }
+                    }
+                });
+
+            });
+
+        });
+    </script>
+</body>
+</html>
