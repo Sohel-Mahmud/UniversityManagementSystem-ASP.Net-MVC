@@ -1,5 +1,4 @@
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -50,10 +49,11 @@ namespace UniversityManagementSystemWebApp.Manager
             return departmentGateway.GetAllDepartments();
         }
 
+<<<<<<< HEAD
         public Department GetDepartmentbyId(int id)
         {
             return departmentGateway.GetDepartmentbyId(id);
-        }
+=======
         public List<SelectListItem> GetAllDepartmentForDropdown()
         {
             List<SelectListItem> selectListItems = new List<SelectListItem>();
@@ -66,6 +66,7 @@ namespace UniversityManagementSystemWebApp.Manager
                 selectListItems.Add(selectListItem);
             }
             return selectListItems;
+>>>>>>> master
         }
     }
 }

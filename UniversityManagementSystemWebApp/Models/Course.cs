@@ -1,5 +1,4 @@
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,7 +14,11 @@ namespace UniversityManagementSystemWebApp.Models
         [Required]
         public string CourseCode { get; set; }
         [Required]
+<<<<<<< HEAD
         [Range(0.5, 5.0, ErrorMessage = "Credit Must be between 0.5 to 5.0")]
+=======
+        [Range(0.5,5.0,ErrorMessage = "Credit Must be between 0.5 to 5.0")]
+>>>>>>> master
         public double Credit { get; set; }
         [Required]
         public string Description { get; set; }
@@ -24,5 +27,4 @@ namespace UniversityManagementSystemWebApp.Models
         [Required]
         public int SemesterId { get; set; }
     }
-
 }
