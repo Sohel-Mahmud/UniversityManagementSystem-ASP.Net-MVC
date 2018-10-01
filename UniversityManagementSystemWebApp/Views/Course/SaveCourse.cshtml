@@ -1,0 +1,126 @@
+﻿@using System.Collections.Generic
+@model UniversityManagementSystemWebApp.Models.Course
+@{
+    //Layout = null;
+
+
+    ViewBag.Title = "Create New ourse";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    List<SelectListItem> departments = ViewBag.Department;
+    List<SelectListItem> semesters = ViewBag.Semester;
+}
+
+
+@using (Html.BeginForm("SaveCourse", "Course", FormMethod.Post, new { id = "saveCourseForm", @class = "form-horizontal main-center" }))
+{
+
+    <div class="form-group">
+        <h2>Create New Course</h2>
+    </div>
+
+    <hr/>
+    
+         if (ViewBag.Message != null)
+        {
+            <div>
+                <label class="form-group input-group alert alert-info">@ViewBag.Message</label>
+                <br />
+            </div>
+
+        }
+
+    <div class="form-group">
+
+        <label for="CourseName" class="cols-sm-2 control-label">Course Name</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-book" aria-hidden="true"></i></span>
+            @Html.TextBoxFor(x => x.CourseName, new { @class = "form-control", placeholder = "Enter Course Name" })
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.CourseName, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="CourseCode" class="cols-sm-2 control-label">Course Code</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-book" aria-hidden="true"></i></span>
+            @Html.TextBoxFor(x => x.CourseCode, new { @class = "form-control", placeholder = "Enter Course Code" })
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.CourseCode, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+
+        <label for="Credit" class="cols-sm-2 control-label">Course Credit</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-book" aria-hidden="true"></i></span>
+            @Html.TextBoxFor(x => x.Credit, new { @class = "form-control", placeholder = "Enter Course Credit" })
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.Credit, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <label for="Description" class="cols-sm-2 control-label">Course Description</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-book" aria-hidden="true"></i></span>
+            @Html.TextBoxFor(x => x.Description, new { @class = "form-control", placeholder = "Enter Course Description" })
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.Description, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group">
+        <label for="DeptId" class="cols-sm-2 control-label">Department</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-building-o" aria-hidden="true"></i></span>
+            @Html.DropDownListFor(x => x.DeptId, new SelectList(departments, "Value", "Text"), new { @class = "form-control" })
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.DeptId, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="SemesterId" class="cols-sm-2 control-label">Semester</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-building-o" aria-hidden="true"></i></span>
+            @Html.DropDownListFor(x => x.SemesterId, new SelectList(semesters, "Value", "Text"), new { @class = "form-control" })
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.SemesterId, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group control-label">
+        <button class="btn btn-success input-group" type="submit">Save</button>
+    </div>
+    <br />
+
+}
+
+
+
+

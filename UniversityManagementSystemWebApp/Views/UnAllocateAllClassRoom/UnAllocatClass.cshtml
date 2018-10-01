@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "UnAllocat All Class";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+
+<div class="form-horizontal  main-center">
+    <!--Name    ,     Action,            Controller-->
+    @Html.ActionLink("UnAllocate All ClassRoom", "UnAllocatClass", "UnAllocateAllClassRoom", new { confirm = true },
+        new { onclick = "return confirm('Are you sure to unassign all courses?')", @class = "btn btn-danger" })
+
+
+</div>

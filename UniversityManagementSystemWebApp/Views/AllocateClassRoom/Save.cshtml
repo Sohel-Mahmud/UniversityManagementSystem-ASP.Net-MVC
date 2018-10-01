@@ -1,0 +1,177 @@
+﻿@using System.Collections.Generic
+@model UniversityManagementSystemWebApp.Models.AllocateClassRoom
+
+
+@{
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    ViewBag.Title = "Save ClassRoom";
+    List<SelectListItem> departments = ViewBag.Departments;
+    List<SelectListItem> rooms = ViewBag.Rooms;
+    List<SelectListItem> weekDays = ViewBag.WeekDays;
+}
+
+
+
+@using (Html.BeginForm("Save", "AllocateClassRoom", FormMethod.Post, new { id = "AllocateClassRoomForm", @class = "form-horizontal  main-center" }))
+{
+    <div class="form-group">
+        <h2>Save Classroom</h2>
+    </div>
+    <hr/>
+    
+         if (ViewBag.Message != null)
+        {
+            <div>
+                <label class="form-group input-group alert alert-info">@ViewBag.Message</label>
+                <br />
+            </div>
+
+        }
+
+
+    <div class="form-group">
+
+        <label for="DeptId" class="cols-sm-2 control-label">Department</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-building-o" aria-hidden="true"></i></span>
+            @Html.DropDownListFor(x => x.DeptId, new SelectList(departments, "Value", "Text"),new {@class = "form-control"})
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.DeptId, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="CourseId" class="cols-sm-2 control-label">Course</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-book" aria-hidden="true"></i></span>
+            @Html.DropDownListFor(x => x.CourseId, new SelectList(string.Empty, "Value", "Text"),new {@class="form-control"})
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.CourseId, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <label for="RoomId" class="cols-sm-2 control-label">Room No</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-building-o" aria-hidden="true"></i></span>
+            @Html.DropDownListFor(x => x.RoomId, new SelectList(rooms, "Value", "Text"), new { @class = "form-control" })
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.RoomId, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="DayId" class="cols-sm-2 control-label">Day</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+            @Html.DropDownListFor(x => x.DayId, new SelectList(weekDays, "Value", "Text"), new { @class = "form-control" })
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.DayId, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group">
+
+        <label for="FromTime" class="cols-sm-2 control-label">Form Time</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-clock-o fa" aria-hidden="true"></i></span>
+            <div class='input-group date' id='datetimepicker3'>
+                @Html.TextBoxFor(x => x.FromTime, new { @class = "form-control", placeholder = "Select Form Time" })
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.FromTime, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="ToTime" class="cols-sm-2 control-label">To Time</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-clock-o fa" aria-hidden="true"></i></span>
+            <div class='input-group date' id='datetimepicker4'>
+                @Html.TextBoxFor(x => x.ToTime, new { @class = "form-control", placeholder = "Select To Time" })
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.ToTime, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker3').datetimepicker({
+                format: 'LT'
+            });
+            $('#datetimepicker4').datetimepicker({
+                format: 'LT'
+            });
+        });
+    </script>
+
+  
+    <div class="form-group control-label">
+            <button class="btn btn-success input-group" type="submit">Save</button>
+        </div>
+
+
+}
+
+
+<script>
+    $("#CourseId").append('<option value=""> --Select-- </option>');
+
+    $(document).ready(function () {
+
+
+
+        //cascading dropdownlist
+        $("#DeptId").change(function () {
+            var deptId = $("#DeptId").val();
+            // alert("show dept id" + deptId);
+            var json = { DeptId: deptId };
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetCourseByDepartmentId","AllocateClassRoom")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(json),
+                success: function (data) {
+                    $("#CourseId").empty();
+                    $.each(data, function (key, value) {
+
+                        $("#CourseId").append('<option value=' + value.Value + '>' + value.Text + '</option>');
+                    });
+                }
+
+            });
+
+        });
+    });
+</script>

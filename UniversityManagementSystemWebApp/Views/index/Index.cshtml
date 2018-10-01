@@ -1,0 +1,263 @@
+﻿@model dynamic
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>University Management System</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link href="~/Content/home.css" rel="stylesheet" />
+    <!--for fixing the bootstrap different size image thumbnail problem-->
+    <style>
+        .row.fix {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+
+
+    <!--NavBar-->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top ">
+
+        <div class="navbar-header">
+
+            <!--for hamburger Icon when NavBar collapses-->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                UMS
+            </a>
+        </div>
+
+        <!--now add elements
+        for Collapsing navbar we use another div with class-->
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+            <div>
+                @Html.ActionLink("University Management System", "Index", "index", null, new { @class = "navbar-brand" })
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown ">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users fa"></i> <span> Student</span> <span class="caret"></span></a>
+                    <ul class="dropdown-menu bg-green-gradient" role="menu">
+                        <li> @Html.ActionLink("Regster New Student", "Register", "Student")</li>
+                        <li> @Html.ActionLink("Enroll A Student", "Enroll", "EnrollCourse")</li>
+                    </ul>
+                </li>
+                <li class="dropdown ">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> <span> Teacher</span> <span class="caret"></span></a>
+                    <ul class="dropdown-menu bg-green-gradient" role="menu">
+                        <li> @Html.ActionLink("Save New Teacher", "SaveTeacher", "Teacher")</li>
+                        <li> @Html.ActionLink("Course Assign to Teacher", "AssignCourse", "Teacher")</li>
+                    </ul>
+                </li>
+                <li class="dropdown ">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-building-o"></i> <span> Department</span> <span class="caret"></span></a>
+                    <ul class="dropdown-menu bg-green-gradient" role="menu">
+                        <li> @Html.ActionLink("Save New Department", "SaveDepartments", "Department")</li>
+                        <li> @Html.ActionLink("Show Department Details", "DepartmentDetails", "Department")</li>
+                    </ul>
+                </li>
+                <li class="dropdown ">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book"></i> <span> Course</span> <span class="caret"></span></a>
+                    <ul class="dropdown-menu bg-green-gradient" role="menu">
+                        <li> @Html.ActionLink("Save New Course", "SaveCourse", "Course")</li>
+                        <li> @Html.ActionLink("Show Course Statics", "CourseStatics", "Course")</li>
+                    </ul>
+                </li>
+                <li class="dropdown ">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-trophy"></i> <span> Result</span> <span class="caret"></span></a>
+                    <ul class="dropdown-menu bg-green-gradient" role="menu">
+                        <li> @Html.ActionLink("Save Result", "SaveResult", "StudentResult")</li>
+                        <li> @Html.ActionLink("Show Result Statics", "Result", "Student")</li>
+                    </ul>
+                </li>
+                <li class="dropdown ">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-object-group"></i> <span> Class Room</span> <span class="caret"></span></a>
+                    <ul class="dropdown-menu bg-green-gradient" role="menu">
+                        <li> @Html.ActionLink("Allocate Classrooms", "Save", "AllocateClassRoom")</li>
+                        <li> @Html.ActionLink("Show Class Schedule", "ViewClassShedule", "AllocateClassRoom")</li>
+                    </ul>
+                </li>
+                <li class="dropdown ">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gears fa"></i> <span> Tasks</span> <span class="caret"></span></a>
+                    <ul class="dropdown-menu bg-green-gradient" role="menu">
+                        <li> @Html.ActionLink("UnAllocate All Classrooms", "UnAllocatClass", "UnAllocateAllClassRoom")</li>
+                        <li> @Html.ActionLink("UnAssign All Courses", "UnAssignCourse", "UnassignAllCourses")</li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1> <i class="fa fa-building-o"></i> University management System
+        </h1>
+        <p>We Offer Functions To Maintain Your University </p>
+    </div>
+    <div class="row fix">
+        <div class="[ col-sm-4  col-md-3 ]">
+            <div class="[ info-card ]">
+                <img style="width: 100%" src="~/Content/img/graduate-student-avatar.png"/>
+                <div class="[ info-card-details ] animate">
+                    <div class="[ info-card-header ]">
+                        <h1> Student </h1>
+                    </div>
+                    <div class="[ info-card-detail ]">
+                        <!-- Description -->
+                        <div>
+                            <li> @Html.ActionLink("Regster New Student", "Register", "Student", null, new {@class = "btn btn-success"})</li> <br/>
+                            <li> @Html.ActionLink("Enroll A Student", "Enroll", "EnrollCourse", null, new {@class = "btn btn-success"})</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="[ col-sm-4  col-md-3 ]">
+            <div class="[ info-card ]">
+                <img style="width: 100%" src="~/Content/img/teacher.png"/>
+                <div class="[ info-card-details ] animate">
+                    <div class="[ info-card-header ]">
+                        <h1> Teacher </h1>
+                    </div>
+                    <div class="[ info-card-detail ]">
+                        <!-- Description -->
+                        <div>
+                            <li> @Html.ActionLink("Save New Teacher", "SaveTeacher", "Teacher", null, new {@class = "btn btn-success"})</li> <br/>
+                            <li> @Html.ActionLink("Course Assign to Teacher", "AssignCourse", "Teacher", null, new {@class = "btn btn-success"})</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="[ col-sm-4  col-md-3 ]">
+            <div class="[ info-card ]">
+                <img style="width: 100%" src="~/Content/img/Department.png"/>
+                <div class="[ info-card-details ] animate">
+                    <div class="[ info-card-header ]">
+                        <h1> Department </h1>
+                    </div>
+                    <div class="[ info-card-detail ]">
+                        <!-- Description -->
+                        <div>
+                            <li> @Html.ActionLink("Save New Department", "SaveDepartments", "Department", null, new {@class = "btn btn-success"})</li> <br/>
+                            <li> @Html.ActionLink("Show Department Details", "DepartmentDetails", "Department", null, new {@class = "btn btn-success"})</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="[ col-sm-4  col-md-3 ]">
+            <div class="[ info-card ]">
+                <img style="width: 100%" src="~/Content/img/course.png"/>
+                <div class="[ info-card-details ] animate">
+                    <div class="[ info-card-header ]">
+                        <h1> Course </h1>
+                    </div>
+                    <div class="[ info-card-detail ]">
+                        <!-- Description -->
+                        <div>
+                            <li> @Html.ActionLink("Save New Course", "SaveCourse", "Course", null, new {@class = "btn btn-success"})</li> <br/>
+                            <li> @Html.ActionLink("Show Course Statics", "CourseStatics", "Course", null, new {@class = "btn btn-success"})</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="[ col-sm-4  col-md-3 ]">
+            <div class="[ info-card ]">
+                <img style="width: 100%" src="~/Content/img/result.png"/>
+                <div class="[ info-card-details ] animate">
+                    <div class="[ info-card-header ]">
+                        <h1> Result </h1>
+                    </div>
+                    <div class="[ info-card-detail ]">
+                        <!-- Description -->
+                        <div>
+                            <li> @Html.ActionLink("Save Result", "SaveResult", "StudentResult", null, new {@class = "btn btn-success"})</li> <br/>
+                            <li> @Html.ActionLink("Show Result Statics", "Result", "Student", null, new {@class = "btn btn-success"})</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="[ col-sm-4  col-md-3 ]">
+            <div class="[ info-card ]">
+                <img style="width: 100%" src="~/Content/img/classroom.png"/>
+                <div class="[ info-card-details ] animate">
+                    <div class="[ info-card-header ]">
+                        <h1> Class Room</h1>
+                    </div>
+                    <div class="[ info-card-detail ]">
+                        <!-- Description -->
+                        <div>
+                            <li> @Html.ActionLink("Allocate Classrooms", "Save", "AllocateClassRoom", null, new {@class = "btn btn-success"})</li> <br/>
+                            <li> @Html.ActionLink("Show Class Schedule", "ViewClassShedule", "AllocateClassRoom", null, new {@class = "btn btn-success"})</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="[ col-sm-4  col-md-3 ]">
+            <div class="[ info-card ]">
+                <img style="width: 100%" src="~/Content/img/action.png"/>
+                <div class="[ info-card-details ] animate">
+                    <div class="[ info-card-header ]">
+                        <h1> Action </h1>
+                    </div>
+                    <div class="[ info-card-detail ]">
+                        <!-- Description -->
+                        <div>
+                            <li> @Html.ActionLink("UnAllocate All Classrooms", "UnAllocatClass", "UnAllocateAllClassRoom", null, new {@class = "btn btn-success"})</li> <br/>
+                            <li> @Html.ActionLink("UnAssign All Courses", "UnAssignCourse", "UnassignAllCourses", null, new {@class = "btn btn-success"})</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+    <footer class="container conmain-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+            Anything you want
+        </div>
+        <!-- Default to the left -->
+        <strong>Copyright &copy; @DateTime.Now.Year <a href="#">Team Danpithe</a>.</strong> All rights reserved.
+    </footer>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

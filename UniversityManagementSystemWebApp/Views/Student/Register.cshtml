@@ -1,0 +1,189 @@
+﻿@using System.Collections.Generic
+@using UniversityManagementSystemWebApp.Models
+@using UniversityManagementSystemWebApp.Models.ViewModel
+@model  Student
+
+@{
+    //    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Register Student";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+
+
+    List<Department> Departments = ViewBag.Departments;
+    var StudentDetails = ViewBag.StudentDetails;
+
+
+}
+
+
+
+<div class="container">
+
+
+    @using (Html.BeginForm("Register", "Student", FormMethod.Post, new { id = "studentRegistrationform", @class = "form-horizontal  main-center" }))
+    {
+        <div class="form-group">
+            <h2>Register New Student</h2>
+        </div>
+        <hr/>
+        
+           if (ViewBag.Message != null)
+        {
+            <div>
+                <label class="form-group input-group alert alert-info">@ViewBag.Message</label>
+                <br />
+            </div>
+
+        }
+
+
+        <div class="form-group">
+
+            <label for="StudentName" class="cols-sm-2 control-label">Student Name</label>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                @Html.TextBoxFor(x => x.StudentName, new { @class = "form-control", placeholder = "Enter Student Name" })
+            </div>
+            <div class="input-group">
+                @Html.ValidationMessageFor(x => x.StudentName, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label for="ContactNo" class="cols-sm-2 control-label">Contact No</label>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
+                @Html.TextBoxFor(x => x.ContactNo, new { @class = "form-control", placeholder = "Enter Contact No" })
+
+            </div>
+            <div class="input-group">
+                @Html.ValidationMessageFor(x => x.ContactNo, null, new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+            <label for="Email" class="cols-sm-2 control-label">Email</label>
+
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                @Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "Enter Email" })
+
+            </div>
+            <div class="input-group">
+                @Html.ValidationMessageFor(x => x.Email, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="Address" class="cols-sm-2 control-label">Address</label>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-address-card" aria-hidden="true"></i></span>
+                @Html.TextBoxFor(x => x.Address, new { @class = "form-control", placeholder = "Enter Address" })
+
+            </div>
+            <div class="input-group">
+                @Html.ValidationMessageFor(x => x.Address, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <label for="Date" class="cols-sm-2 control-label">Date</label>
+            @*  <input type='text' class="col-md-10" id='Date' name="Date"/>*@
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                @Html.TextBoxFor(x => x.Date, new { @class = "form-control", placeholder = "Select Date" })
+
+            </div>
+            <div class="input-group">
+                @Html.ValidationMessageFor(x => x.Date, null, new { @class = "text-danger" })
+            </div>
+
+            <script type="text/javascript">
+                $(function () {
+                    $('#Date').datetimepicker({
+                        format: 'DD/MM/YYYY'
+                    });
+                });
+            </script>
+
+
+        </div>
+
+        <div class="form-group">
+            <label for="DepartmentId" class="cols-sm-2 control-label">Department</label>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-building-o" aria-hidden="true"></i></span>
+                @Html.DropDownListFor(x => x.DepartmentId, new SelectList(Departments, "DeptId", "Code"), "--SELECT--", new { @class = "form-control" })
+            </div>
+            <div class="input-group">
+                @Html.ValidationMessageFor(x => x.DepartmentId, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group control-label">
+            <button class="btn btn-success input-group" type="submit">Register</button>
+        </div>
+
+     
+
+    }
+
+    @if (ViewBag.Message != null && ViewBag.Message.Equals("Save Successful"))
+    {
+        <hr />
+        <div class="container">
+            <table class="table table-bordered table-hover table-striped">
+                <thead class="bg-green-active">
+                    <tr>
+                        <th>Name</th>
+                        <th> Registration No</th>
+                        <th>Email</th>
+                        <th>Contact NO</th>
+                        <th>Date</th>
+                        <th>Address</th>
+                        <th>Department Code</th>
+                        <th>Department Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>@StudentDetails.StudentName</td>
+                        <td>@StudentDetails.StudentRegNo</td>
+                        <td>@StudentDetails.StudentEmail</td>
+                        <td>@StudentDetails.StudntContactNo</td>
+                        <td>@StudentDetails.StudentDate</td>
+                        <td>@StudentDetails.StudentAddress</td>
+                        <td>@StudentDetails.StudentDeptCode</td>
+                        <td>@StudentDetails.StudentDeptName</td>
+
+                    </tr>
+                    @*<tr>
+                            <td></td>
+                        </tr>*@
+                </tbody>
+
+            </table>
+        </div>
+
+    }
+</div>
+
+
+
+
+
+
+

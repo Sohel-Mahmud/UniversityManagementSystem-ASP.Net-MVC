@@ -1,0 +1,166 @@
+﻿@using System.Collections.Generic
+@model UniversityManagementSystemWebApp.Models.Enroll
+
+@{
+    ViewBag.Title = "Save Result";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    List<SelectListItem> studentRegNo = ViewBag.StudentRegNo;
+    List<SelectListItem> allGradelist = ViewBag.allGradelist;
+}
+
+
+@using (Html.BeginForm("SaveResult", "StudentResult", FormMethod.Post ,new { id = "saveResultform", @class = "form-horizontal  main-center" }))
+{
+    <div class="form-group">
+        <h2>Save Result</h2>
+    </div>
+    <hr/>
+     if (ViewBag.Message != null)
+    {
+        <div>
+            <label class="form-group input-group">@ViewBag.Message</label>
+            <br/>
+        </div>
+        
+    }
+
+    <div class="form-group">
+        <label for="StudentId" class="cols-sm-2 control-label">Student</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+            @Html.DropDownListFor(x => x.StudentId, new SelectList(studentRegNo, "Value", "Text"), new { @class = "form-control" })
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.StudentId, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="Name" class="cols-sm-2 control-label">Name</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+            <input class="readonly form-control" type='text' name="Name" id="Name" readonly="readonly" />
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label for="Email" class="cols-sm-2 control-label">Email</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+            <input class="readonly form-control" type='text' name="Email" id="Email" readonly="readonly" />
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label for="Department" class="cols-sm-2 control-label">Department</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-building-o" aria-hidden="true"></i></span>
+            <input class="readonly form-control" type='text' name="Department" id="Department" readonly="readonly" />
+
+        </div>
+
+    </div>
+
+    
+    
+     <div class="form-group">
+        <label for="CourseId" class="cols-sm-2 control-label">Course</label>
+
+         <div class="input-group">
+             <span class="input-group-addon"><i class="fa fa-book" aria-hidden="true"></i></span>
+             @Html.DropDownListFor(x => x.CourseId, new SelectList(string.Empty, "Value", "Text"),new {@class = "form-control"})
+             <script>
+                 $("#CourseId").append('<option value=""> --Select-- </option>');
+             </script>
+         </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.CourseId, null, new { @class = "text-danger" })
+        </div>
+    </div>
+    
+    
+    <div class="form-group">
+        <label for="GradeId" class="cols-sm-2 control-label">Grade</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-trophy" aria-hidden="true"></i></span>
+            @Html.DropDownListFor(x => x.GradeId, new SelectList(allGradelist, "Value", "Text"), new {@class = "form-control"})
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.GradeId, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+   
+
+
+    <div class="form-group control-label">
+        <button class="btn btn-success input-group" type="submit">Register</button>
+    </div>
+
+
+   
+
+
+}
+<script>
+
+    $(document).ready(function () {
+
+
+
+        //cascading dropdownlist
+        $("#StudentId").change(function () {
+            var studentId = $("#StudentId").val();
+            // alert("show dept id" + studentId);
+            var json = { studentId: studentId };
+
+            //call for course dropdown
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetCourseByStudentId", "StudentResult")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(json),
+                success: function (data) {
+                    $("#CourseId").empty();
+                    $.each(data, function (key, value) {
+
+                        $("#CourseId").append('<option value=' + value.Value + '>' + value.Text + '</option>');
+                    });
+                }
+
+            });
+
+
+            //for all Student info name,email,dept
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetAllInfoByStudentId", "StudentResult")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(json),
+                success: function (data) {
+                    if (data != null) {
+                        $('#Name').val(data.StudentName);
+                        $('#Email').val(data.Email);
+                        $('#Department').val(data.DeptCode);
+                    } else {
+                        alert("Something went wrong");
+                    }
+                }
+
+            });
+
+
+
+        });
+    });
+</script>

@@ -1,0 +1,80 @@
+﻿@using System.Collections.Generic
+@{
+    //Layout = null;
+    ViewBag.Title = "Department's Course Details";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    List<SelectListItem> departments = ViewBag.Departments;
+}
+<div class="form-horizontal main-center">
+
+    
+    <div class="form-group ">
+
+        <h2>Department's Course Details</h2>
+        <hr/>
+
+    </div>
+
+    <div class="form-group">
+        <label for="DepartmentId" class="cols-sm-2 control-label">Department</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-building-o" aria-hidden="true"></i></span>
+            @Html.DropDownList("DepartmentId", new SelectList(departments, "Value", "Text"), new {@class = "form-control"})
+        </div>
+
+    </div>
+    </div>
+
+    @*    <div>*@
+@*        <div class="form-group ">*@
+@*            <div class="col-md-2 control-label">*@
+@*                @Html.Label("Department")*@
+@*            </div>*@
+@*            <div class="col-md-10">*@
+@*                @Html.DropDownList("DepartmentId", new SelectList(departments, "Value", "Text"), new { @class = "col-md-10" })*@
+@**@
+@*            </div>*@
+@*        </div>*@
+        <div class="container">
+            <table class="table table-striped table-hover table-bordered">
+                <thead class="bg-green-active" id="Tablehead">
+
+                </thead>
+                <tbody id="CourseDetails"></tbody>
+            </table>
+        </div>
+
+
+<script>
+    $(document).ready(function () {
+
+
+
+        //cascading dropdownlist
+        $("#DepartmentId").change(function () {
+            var deptId = $("#DepartmentId").val();
+
+            var json = { DepartmentId: deptId };
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetAllCourseListByDeptId", "Course")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(json),
+                success: function (data) {
+                    $("#CourseDetails").empty();
+                    $("#Tablehead").empty();
+                    $("#Tablehead").append('<tr> <th>Course Code</th> <th>Course Name</th> <th>Semester</th> <th>Teacher Name</th></tr>');
+                    $.each(data, function (key, value) {
+
+                        $("#CourseDetails").append('<tr> <td>' + value.CourseCode + '</td> <td>' + value.CourseName + '</td> <td>' + value.Semester + '</td> <td>' + value.AssignedTeacherName + '</td></tr>');
+
+                    });
+                }
+
+            });
+
+        });
+    });
+</script>
+

@@ -1,0 +1,44 @@
+﻿@using UniversityManagementSystemWebApp.Models
+@model System.Collections.Generic.List<UniversityManagementSystemWebApp.Models.Department>
+@{
+    //    Layout = null;
+    ViewBag.Title = "Department Details";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DepartmentDetails</title>
+</head>
+<body>
+    <div class="container">
+        <br />
+        <h2 class="text-center">Departments</h2>
+        <hr />
+        <table class="table table-striped table-hover table-bordered">
+
+            <thead class="bg-green-active">
+                <tr class="text-black">
+                    <th>Code</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (Department aDepartment in Model)
+                {
+                    <tr>
+                        <td>@aDepartment.Code</td>
+                        <td>@aDepartment.Name</td>
+                    </tr>
+                }
+            </tbody>
+
+          
+        </table>
+    </div>
+</body>
+</html>

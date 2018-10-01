@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace UniversityManagementSystemWebApp.Models.ViewModel
+{
+    public class StudenResultViewModel
+    {
+        public string StudentName { get; set; }
+     
+        public string Email { get; set; }
+
+        public string DeptCode { get; set; }
+    }
+}

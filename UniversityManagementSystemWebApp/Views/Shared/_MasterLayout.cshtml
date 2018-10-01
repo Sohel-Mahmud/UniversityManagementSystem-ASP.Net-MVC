@@ -1,0 +1,304 @@
+﻿@using System
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8"/>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Content/dist/css/AdminLTE.css" rel="stylesheet" />
+    @*    <link href="~/Content/dist/css/skins/skin-black-light.min.css" rel="stylesheet" />*@
+    <link href="~/Content/dist/css/skins/skin-green.min.css" rel="stylesheet" />
+    @*    <link href="~/Content/dist/css/skins/skin-black.css" rel="stylesheet" />*@
+    @*    <link href="~/Content/dist/css/skins/skin-blue.min.css" rel="stylesheet" />*@
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+    <style>
+        .main-login {
+            background-color: #fff;
+            /* shadows and rounded borders */
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            border-radius: 2px;
+            -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .main-center {
+            margin-top: 30px;
+            margin: 0 auto;
+            max-width: 550px;
+            padding: 40px 40px;
+        }
+
+        input[readonly].readonly {
+            background-color: transparent;
+            -webkit-box-shadow: none;
+            -ms-box-shadow: none;
+            box-shadow: none;
+        }
+
+        hr {
+         
+            border-top: 1px dashed #8c8b8b;
+        }
+    </style>
+
+
+
+    @Scripts.Render("~/bundles/modernizr")
+    @*    @Scripts.Render("~/bundles/jquery")*@
+</head>
+<body class="hold-transition skin-green sidebar-mini sidebar-collapse">
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <!-- Logo -->
+       
+        <a href="#" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>U</b>MS</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>U</b>MS</span>
+        </a>
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+
+            <div>
+                @Html.ActionLink("University Management System", "Index", "index",null,new{@class = "navbar-brand"})
+            </div>
+           
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- Messages: style can be found in dropdown.less-->
+                    <!-- Tasks Menu -->
+
+                    <!-- User Account Menu -->
+                    <!-- Control Sidebar Toggle Button -->
+
+                    <li class="dropdown ">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users fa"></i> <span> Student</span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu bg-green-gradient" role="menu">
+                            <li> @Html.ActionLink("Regster New Student", "Register", "Student")</li>
+                            <li> @Html.ActionLink("Enroll A Student", "Enroll", "EnrollCourse")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown ">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> <span> Teacher</span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu bg-green-gradient" role="menu">
+                            <li> @Html.ActionLink("Save New Teacher", "SaveTeacher", "Teacher")</li>
+                            <li> @Html.ActionLink("Course Assign to Teacher", "AssignCourse", "Teacher")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown ">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-building-o"></i> <span> Department</span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu bg-green-gradient" role="menu">
+                            <li> @Html.ActionLink("Save New Department", "SaveDepartments", "Department")</li>
+                            <li> @Html.ActionLink("Show Department Details", "DepartmentDetails", "Department")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown ">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book"></i> <span> Course</span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu bg-green-gradient" role="menu">
+                            <li> @Html.ActionLink("Save New Course", "SaveCourse", "Course")</li>
+                            <li> @Html.ActionLink("Show Course Statics", "CourseStatics", "Course")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown ">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-trophy"></i> <span> Result</span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu bg-green-gradient" role="menu">
+                            <li> @Html.ActionLink("Save Result", "SaveResult", "StudentResult")</li>
+                            <li> @Html.ActionLink("Show Result Statics", "Result", "Student")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown ">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-object-group"></i> <span> Class Room</span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu bg-green-gradient" role="menu">
+                            <li> @Html.ActionLink("Allocate Classrooms", "Save", "AllocateClassRoom")</li>
+                            <li> @Html.ActionLink("Show Class Schedule", "ViewClassShedule", "AllocateClassRoom")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown ">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gears fa"></i> <span> Tasks</span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu bg-green-gradient" role="menu">
+                            <li> @Html.ActionLink("UnAllocate All Classrooms", "UnAllocatClass", "UnAllocateAllClassRoom")</li>
+                            <li> @Html.ActionLink("UnAssign All Courses", "UnAssignCourse", "UnassignAllCourses")</li>
+                        </ul>
+                    </li>
+
+                  
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <!-- search form (Optional) -->
+            <!-- /.search form -->
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu" data-widget="tree">
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-users fa"></i> <span> Student</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-users fa pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li> @Html.ActionLink("Regster New Student","Register","Student")</li>
+                        <li> @Html.ActionLink("Enroll A Student", "Enroll", "EnrollCourse")</li>
+                    </ul>
+                    
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-user-circle-o"></i> <span> Teacher</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-user-circle-o pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li> @Html.ActionLink("Save New Teacher", "SaveTeacher", "Teacher")</li>
+                        <li> @Html.ActionLink("Course Assign to Teacher", "AssignCourse", "Teacher")</li>
+                    </ul>
+
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-building-o"></i> <span> Department</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-building-o pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li> @Html.ActionLink("Save New Department", "SaveDepartments", "Department")</li>
+                        <li> @Html.ActionLink("Show Department Details", "DepartmentDetails", "Department")</li>
+                    </ul>
+
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-book"></i> <span> Course</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-book pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li> @Html.ActionLink("Save New Course", "SaveCourse", "Course")</li>
+                        <li> @Html.ActionLink("Show Course Statics", "CourseStatics", "Course")</li>
+                    </ul>
+
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-trophy"></i> <span> Result</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-trophy pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li> @Html.ActionLink("Save Result", "SaveResult", "StudentResult")</li>
+                        <li> @Html.ActionLink("Show Result Statics", "Result", "Student")</li>
+                    </ul>
+
+                </li>
+
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-object-group"></i> <span> Class Room</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-object-group pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li> @Html.ActionLink("Allocate Classrooms", "Save", "AllocateClassRoom")</li>
+                        <li> @Html.ActionLink("Show Class Schedule", "ViewClassShedule", "AllocateClassRoom")</li>
+                    </ul>
+
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-tasks"></i> <span> Actions</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-tasks pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li> @Html.ActionLink("UnAllocate All Classrooms", "UnAllocatClass", "UnAllocateAllClassRoom")</li>
+                        <li> @Html.ActionLink("UnAssign All Courses", "UnAssignCourse", "UnassignAllCourses")</li>
+                    </ul>
+
+                </li>
+                fa fa-tasks
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+    <div class="content-wrapper">
+
+
+
+
+        <section class="content container-fluid">
+            <!--------------------------
+            | Your Page Content Here |
+            -------------------------->
+            @RenderBody()
+
+
+        </section>
+
+
+
+
+
+    </div>
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+            Anything you want
+        </div>
+        <!-- Default to the left -->
+        <strong>Copyright &copy; @DateTime.Now.Year <a href="#">Team Danpithe</a>.</strong> All rights reserved.
+    </footer>
+    @*    <footer>*@
+    @*        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
+    @*    </footer>*@
+
+
+    @*    @Scripts.Render("~/bundles/jquery")*@
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Content/dist/js/adminlte.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+﻿@using System.Collections.Generic
+@using UniversityManagementSystemWebApp.Models.ViewModel
+@model UniversityManagementSystemWebApp.Models.AllocateClassRoom
+
+@{
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    ViewBag.Title = "View Class Schedule";
+    List<SelectListItem> departments = ViewBag.Departments;
+    List<ViewClassSheduleViewModel> shedules = ViewBag.ShowDetails;
+}
+
+
+
+@using (Html.BeginForm("ViewClassShedule", "AllocateClassRoom", FormMethod.Post, new { id = "AllocateClassRoomForm", @class = "form-horizontal  main-center" }))
+{
+
+    <div class="form-group">
+            <h2>View Class Schedule</h2>
+        </div>
+        <hr />
+
+    <div class="form-group">
+        <label for="DeptId" class="cols-sm-2 control-label">Department</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-building-o" aria-hidden="true"></i></span>
+            @Html.DropDownListFor(x => x.DeptId, new SelectList(departments, "Value", "Text"),new {@class = "form-control"})
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.DeptId, null, new { @class = "text-danger" })
+        </div>
+
+    </div>
+
+
+}
+<!--Table for showing details-->
+<div class="container">
+    <table class="table table-bordered table-hover table-striped">
+        <thead class="bg-green-active" id="Tablehead">
+
+        </thead>
+        <tbody id="ClassSheduleDetails"></tbody>
+    </table>
+</div>
+<script>
+
+            $(document).ready(function () {
+
+
+
+                //cascading dropdownlist
+                $("#DeptId").change(function () {
+                    var deptId = $("#DeptId").val();
+
+                   var json = { DeptId: deptId };
+                    $.ajax({
+                        type: "POST",
+                        url : '@Url.Action("GetViewClassSheduleByDeptId", "AllocateClassRoom")',
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(json),
+                        success: function (data) {
+                            $("#ClassSheduleDetails").empty();
+                            $("#Tablehead").empty();
+                            $("#Tablehead").append('<tr> <th>CourseCode</th> <th>CourseName</th> <th>Schedule</th></tr>');
+                            $.each(data, function (key, value) {
+
+                                var adiv = document.createElement("div");
+                                var td1 = document.createElement("td");
+                                var td2 = document.createElement("td");
+                                var td3 = document.createElement("td");
+                                var trTable = document.createElement("tr");
+                                $.each(value.Scheduleinfo, function (index, innerValue) {
+                                    var para = document.createElement("p");
+                                    para.append(innerValue);
+                                    td3.append(para);
+                                });
+                                td1.append(value.CourseCode);
+                                td2.append(value.CourseName);
+                                trTable.append(td1, td2, td3);
+                                $("#ClassSheduleDetails").append(trTable);
+
+                            });
+                        }
+
+                    });
+
+                });
+            });
+</script>
+
+

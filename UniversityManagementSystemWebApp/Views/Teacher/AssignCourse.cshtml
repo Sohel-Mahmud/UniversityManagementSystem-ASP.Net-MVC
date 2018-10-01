@@ -1,0 +1,287 @@
+﻿@using System.Collections.Generic
+@model UniversityManagementSystemWebApp.Models.AssignCourse
+@{
+    //Layout = null;
+    ViewBag.Title = "Assign Course To Teacher";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    List<SelectListItem> departments = ViewBag.Department;
+
+}
+
+
+
+@using (Html.BeginForm("AssignCourse", "Teacher", FormMethod.Post, new { id = "assignCourseForm", @class = "form-horizontal  main-center" }))
+{
+    <div class="form-group">
+        <h2>Course Assign to Teacher</h2>
+    </div>
+    <hr />
+
+
+
+    <div class="form-group">
+        <label for="DeptId" class="cols-sm-2 control-label">Department</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-building-o" aria-hidden="true"></i></span>
+            @Html.DropDownListFor(x => x.DepartmentId, new SelectList(departments, "Value", "Text"), new { @class = "form-control" })
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.DepartmentId, null, new { @class = "text-danger" })
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label for="TeacherId" class="cols-sm-2 control-label">Teacher's Name</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+            @Html.DropDownListFor(x => x.TeacherId, new SelectList(""), "--Select--", new { @class = "form-control" })
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.TeacherId, null, new { @class = "text-danger" })
+        </div>
+
+    </div>
+
+
+    <div class="form-group">
+        <label for="CreditLimit" class="cols-sm-2 control-label">Credit To be Taken</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-calculator" aria-hidden="true"></i></span>
+            <input class="readonly form-control" type='text' name="CreditLimit" id="CreditLimit" readonly="readonly" />
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label for="remainigCredit" class="cols-sm-2 control-label">Remaining Credit</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-calculator" aria-hidden="true"></i></span>
+            <input class="readonly form-control" type='text' name="remainigCredit" id="remainigCredit" readonly="readonly" />
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="form-group">
+        <label for="CourseId" class="cols-sm-2 control-label">Course Code</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-book" aria-hidden="true"></i></span>
+            @Html.DropDownListFor(x => x.CourseId, new SelectList(""), "--Select--", new { @class = "form-control" })
+        </div>
+        <div class="input-group">
+            @Html.ValidationMessageFor(x => x.CourseId, null, new { @class = "text-danger" })
+        </div>
+
+    </div>
+
+
+
+    
+    
+      <div class="form-group">
+          <label for="CourseName" class="cols-sm-2 control-label">Course Name</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-book" aria-hidden="true"></i></span>
+            <input class="readonly form-control" type='text' name="CourseName" id="CourseName" readonly="readonly" />
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label for="Credit" class="cols-sm-2 control-label">Course Credit</label>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-book" aria-hidden="true"></i></span>
+            <input class="readonly form-control" type='text' name="Credit" id="Credit" readonly="readonly" />
+
+        </div>
+
+    </div>
+
+
+    <div class="form-group control-label">
+        <button class="btn btn-success input-group"onclick="return alerFunction();" type="submit">Register</button>
+    </div>
+    if (ViewBag.Message != null)
+    {
+        <label class="form-group input-group">@ViewBag.Message</label>
+
+    }
+}
+
+<script>
+
+    function alerFunction() {
+        var remainingCredit = document.getElementById("remainigCredit").value;
+        var courseCredit = document.getElementById("Credit").value;
+        if (remainingCredit < 0) {
+            var r = confirm("Teacher has no remainig credit. Still want to assign course?");
+            if (r == false) {
+                return false;
+            }
+
+        } else if (remainingCredit - courseCredit < 0) {
+            var s = confirm("Teacher has less credit than this courses credit. Still want to assign course?");
+            if (s == false) {
+                return false;
+            }
+        } else {
+            return true;
+        }
+
+    }
+
+
+    $(document).ready(function () {
+
+        $('#DepartmentId').change(function () {
+
+            var departmentId = $('#DepartmentId').val();
+            //alert("dept id " + departmentId);
+            var json = { DepartmentId: departmentId };
+
+            $.ajax({
+
+                type: "POST",
+
+                url: '@Url.Action("GetTeacherByDeptId", "Teacher")',
+                //url: '/Department/GetStudentsByDepartmentId',
+
+                contentType: "application/json; charset=utf-8",
+
+                data: JSON.stringify(json),
+
+                success: function (data) {
+
+
+                    //$("#StudentDetails").empty();
+                    $("#TeacherId").empty();
+                    $("#TeacherId").append('<option value="">--Select--</option>');
+
+
+
+                    $.each(data, function (key, value) {
+
+                        $("#TeacherId").append('<option value=' + value.TeacherId + '>' + value.Name + '</option>');
+                        //$("#StudentDetails").append('<tr> <td>'+value.StudentName+'</td>   <td>'+value.Address+'</td>   <td>'+value.DepartmentName+'</td></tr>');
+
+                    });
+
+                }
+            });
+
+            $.ajax({
+
+                type: "POST",
+
+                url: '@Url.Action("GetAllCourseCodeByDeptId", "Teacher")',
+                //url: '/Department/GetStudentsByDepartmentId',
+
+                contentType: "application/json; charset=utf-8",
+
+                data: JSON.stringify(json),
+
+                success: function (data) {
+
+
+                    //$("#StudentDetails").empty();
+                    $("#CourseId").empty();
+                    $("#CourseId").append('<option value="">--Select--</option>');
+
+
+
+                    $.each(data, function (key, value) {
+
+                        $("#CourseId").append('<option value=' + value.CourseId + '>' + value.CourseCode + '</option>');
+                        //$("#StudentDetails").append('<tr> <td>'+value.StudentName+'</td>   <td>'+value.Address+'</td>   <td>'+value.DepartmentName+'</td></tr>');
+
+                    });
+
+                }
+            });
+
+
+        });
+
+        $('#TeacherId').change(function () {
+
+            var teacherId = $('#TeacherId').val();
+            //alert("dept id " + teacherId);
+            var json = { TeacherId: teacherId };
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetTeacherInfoByTeacherId","Teacher")',
+
+                contentType: "application/json; charset=utf-8",
+
+                data: JSON.stringify(json),
+                success: function (data) {
+                    if (data != null) {
+                        $('#CreditLimit').val(data.Credit);
+                    } else {
+                        alert("something went wrong");
+                    }
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetCreditTakenSumOfTeacherByTeacherId","Teacher")',
+
+                contentType: "application/json; charset=utf-8",
+
+                data: JSON.stringify(json),
+                success: function (data) {
+                    var value = data;
+
+                    if (value != null) {
+
+                        $('#remainigCredit').val(value);
+                    }
+                }
+            });
+
+        });
+
+
+        $('#CourseId').change(function () {
+
+            var courseId = $('#CourseId').val();
+            //alert("dept id " + courseId);
+            var json = { CourseId: courseId };
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetCourseNameCreditByCourseId","Teacher")',
+
+                contentType: "application/json; charset=utf-8",
+
+                data: JSON.stringify(json),
+                success: function (data) {
+                    if (data != null) {
+                        $('#CourseName').val(data.CourseName);
+                        $('#Credit').val(data.Credit);
+                    } else {
+                        alert("something went wrong");
+                    }
+                }
+            });
+
+        });
+
+    });
+</script>
